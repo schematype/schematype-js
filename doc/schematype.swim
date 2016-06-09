@@ -1,0 +1,62 @@
+schematype
+==========
+
+Validator, Translator and Formatter for YAML, JSON, and Others
+
+= Synopsis
+
+    # Check if a YAML file is well-formed:
+    > schematype validate <schema-file-or-url> file.yaml
+
+= Description
+
+The `schematype` tool is a validator, translator and formatter for YAML, JSON,
+CSV and TSV data.
+
+= Installation
+
+The `schematype` command is currently written in NodeJS. To install it, run:
+
+    > npm install -g schematype
+
+= Usage
+
+The `schematype` command takes a data file as input and:
+
+* With no options, load it and report whether it is well-formed.
+* With `--schema=...` option, lint/validate it against the schema.
+* With `--to=...` option, write it to stdout in the specified format.
+
+If the input data is valid, `schematype` will return `0` as the exit code; else
+it will return `1`.
+
+= Command Options
+
+The `schematype` command has the following options:
+
+* `-s`, `--schema=<file>`
+
+  To use `schematype` as a linter/validator, specify a schema file. Supports
+  the `schemat` and `json-schema` formats. See Below.
+
+* `-t`, `--to=<format>`
+
+  With this option, `schematype` will format the input data into the specified
+  format and write it to stdout. Valid formats are: `yaml`, `json`, `csv` and
+  `tsv`.  This option can be used along with the `--schema` option.
+
+* `-f`, `--from=<format>`
+
+  Explicitly specify the input format. Usually `schematype` can correctly guess
+  the input format. Use this option when it can't. Valid formats are: `yaml`,
+  `json`, `csv` and `tsv`. This option can be used along with the `--schema`
+  option.
+
+* `-q`, `--quiet`
+
+  Suppress all validation output. Use this when you only care about the
+  translation output, and/or the `schematype` exit code.
+
+= See Also
+
+* "JSON Schema"<...>

@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+set -e
+
+rm -fr npm
+mkdir npm
+
+(
+  set -x
+  cp Changes npm
+  for file in $(find lib | grep -E '\.coffee$'); do
+    if [[ $file == 'lib/index.coffee' ]]; then
+      js="npm/index.js"
+    else
+      js="npm/${file/\.coffee/.js}"
+    fi
+    mkdir -p "$(dirname $js)"
+    coffee --print --compile "$file" > "$js"
+  done
+  if [[ -d bin ]]; then
+    for file in $(find bin -type f); do
+      js="npm/$file"
+      mkdir -p "$(dirname $js)"
+      echo "#!/usr/bin/env node" > "$js"
+      coffee --print --compile "$file" >> "$js"
+      chmod +x "$js"
+    done
+  fi
+  [ -e eg ] && cp -r eg npm/
+  cp -r test npm/
+  ./.pkg/bin/make-package-json > npm/package.json
+)
+
+for swim in $(find doc -type f -name '*.swim'); do
+  md="${swim/.swim/.md}"
+  md="npm/$md"
+  mkdir -p "$(dirname "$md")"
+  if grep '^====' "$swim" &> /dev/null; then
+    (
+      set -x
+      swim --to=md --complete --wrap "$swim" > "$md"
+      swim --to=md --complete --wrap "$swim" > npm/ReadMe.md
+    )
+  else
+    (
+      set -x
+      swim --to=md --complete --wrap "$swim" > "$md"
+    )
+  fi
+done
+
+# vim: set sw=2 lisp:

@@ -1,0 +1,65 @@
+#!/usr/bin/env coffee
+
+YAML = require 'js-yaml'
+fs = require 'fs'
+
+meta = YAML.load(String(fs.readFileSync 'Meta'))
+
+# Rework meta for npm
+plan = [
+  'name',
+  'version',
+  ['description', 'abstract'],
+  ['keywords', 'tag'],
+  'homepage',
+  ['bugs.url', 'devel.bug'],
+  ['license.type', 'license'],
+  'author.name',
+  'author.email',
+  ['author.url', 'author.homepage'],
+  'bin',
+  ['repository.type', '=', 'git'],
+  ['repository.url', 'devel.git'],
+  'scripts',
+  'dependencies',
+  'devDependencies',
+  'engines',
+]
+
+get = (key, path='meta')->
+  keys = key.split '.'
+  value = null
+  while keys.length > 0
+    path += '.' + keys.shift()
+    if not (value = eval path)?
+      return null
+    if keys.length == 0
+      return value
+  return null
+
+put = (key, value)->
+  keys = key.split '.'
+  path = 'pkg'
+  while keys.length > 0
+    path += '.' + keys.shift()
+    if keys.length == 0
+      eval "#{path} = value"
+    else if not (eval path)?
+      eval "#{path} = {}"
+
+pkg = {}
+
+for key in plan
+  target = source = key
+  if key instanceof Array
+    target = key[0]
+    source = key[1]
+    if key[1] == '='
+      put target, key[2]
+      continue
+  if value = get target, 'meta["=npm"]'
+    put target, value
+  else if value = get source
+    put target, value
+
+console.log JSON.stringify pkg, null, 2

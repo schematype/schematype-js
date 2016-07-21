@@ -1,0 +1,44 @@
+# SchemaType schema for CloudFoundry manifest.yaml file.
+#
+# See: http://docs.pivotal.io/pivotalcf/1-7/devguide/deploy-apps/manifest.html
+
+-name: /manifest
+-desc: Schema for CloudFoundry's manifest.yml file
+-spec: schematype.org/v0.0.1
+-from: github:schematype/type/#master
+
+# Define the 'cf-manifest' schema. All the keys under +shared are available at
+# the top level. -base imports them. They also get imported into +application:
+-base: +/shared
+
+# Plus these 2 keys that are only allowed at the top level:
+applications?: +/application[+]
+inherit?: +file/path/rel
+
+# Define the sub-types:
++shared:
+  buildpack?: +net/uri
+  command?: +code/shell-command?
+  disk_quota?: +/size
+  domain?: +net/domain-name
+  domains?: +net/domain-name[+!]
+  env?:
+    +sys/env-var-name: +print
+  health-check-type?: [none, port]
+  host?: +net/host-name
+  hosts?: +net/host-name[+!]
+  instances?: +int/pos
+  memory?: +/size
+  no-hostname: +bool
+  no-route?: +bool
+  path?: +file/path/dir/rel
+  random-route?: +bool
+  services?: +word-[+!]
+  stack?: +word-
+  timeout?: +int/pos
+
++size: /^[1-9][0-9]*(M|G|MB|GB)$/i
+
++application:
+  -base: +/shared
+  name: +str/word-

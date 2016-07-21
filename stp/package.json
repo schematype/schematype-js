@@ -1,0 +1,7 @@
+{
+  "name": "schematype",
+  "dependencies": {
+    "ajv": ">0",
+    "js-yaml": ">0"
+  }
+}

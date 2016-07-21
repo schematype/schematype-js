@@ -1,0 +1,30 @@
+#!/usr/bin/env coffee
+
+die = (msg)->
+  console.log msg
+  process.exit 1
+
+args = process.argv[2..]
+args.length > 0 ||
+  die "#{__filename.replace /.*\//, ''} requires an argument list of manifest.yml files"
+schema_file = "#{__dirname}/manifest.jsc"
+
+fs = require 'fs'
+YAML = require 'js-yaml'
+
+read = (path)->
+  fs.readFileSync(path).toString()
+
+Ajv = require 'ajv'
+ajv = new Ajv \
+  allErrors: true
+schema = JSON.parse read schema_file
+validator = ajv.compile schema
+
+for data_file in args
+  data = YAML.load read "/data/#{data_file}"
+  if valid = validator data
+    console.log "'#{data_file}' is valid!"
+  else
+    console.log "'#{data_file}' is NOT valid:"
+    console.log validator.errors

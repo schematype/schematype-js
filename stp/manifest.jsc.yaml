@@ -1,0 +1,96 @@
+# This is a hand port of manifest.stp to JSON Schema in YAML:
+
+$schema: 'http://json-schema.org/draft-04/schema#'
+
+const:
+- &SIZE ^[1-9][0-9]*(M|G|MB|GB)$
+- &WORD- ^[-\w]+$
+- &HOST ^[-\w]+$
+
+definitions:
+  shared: &shared
+    buildpack:
+      type: string
+      format: uri
+    command:
+      oneOf:
+      - type: string
+      - type: 'null'
+    disk_quota:
+      $ref: '#/definitions/size'
+    domain:
+      type: string
+    domains:
+      type: array
+      items:
+        type: string
+    env:
+      type: object
+      additionalProperties: false
+      patternProperties:
+        ^[A-Za-z0-9_]+$:
+          type: string
+    health-check-type:
+      type: string
+      enum: [none, port]
+    host:
+      type: string
+      pattern: *HOST
+    hosts:
+      type: array
+      items:
+        type: string
+        pattern: *HOST
+    instances:
+      type: integer
+      minimum: 1
+    memory:
+      $ref: '#/definitions/size'
+    no-hostname:
+      type: boolean
+    no-route:
+      type: boolean
+    path:
+      type: string
+    random-route:
+      type: boolean
+    services:
+      type: array
+      items:
+        type: string
+        pattern: *WORD-
+    stack:
+      type: string
+      pattern: *WORD-
+    timeout:
+      type: integer
+      minimum: 1
+
+  size:
+    type: string
+    description: Memory size
+    pattern: *SIZE
+
+  application:
+    type: object
+    additionalProperties: false
+    required:
+    - name
+    properties:
+      name:
+        type: string
+        pattern: *WORD-
+      <<: *shared
+
+name: cf-manifest
+type: object
+additionalProperties: false
+# required: []
+properties:
+  applications:
+    type: array
+    items:
+      $ref: '#/definitions/application'
+  inherit:
+    type: string
+  <<: *shared

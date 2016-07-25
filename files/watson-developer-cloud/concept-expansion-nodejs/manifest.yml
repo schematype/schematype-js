@@ -1,0 +1,5 @@
+applications:
+- name: concept-expansion-demo
+  command: npm start
+  path: .
+  memory: 256M

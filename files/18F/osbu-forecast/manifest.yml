@@ -1,0 +1,11 @@
+---
+# all applications use these settings and services
+memory: 512M
+instances: 1
+buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
+applications:
+- name: forecast
+  path: _site
+  timeout: 180
+script: jekyll build ./_site
+domain: 18f.gov

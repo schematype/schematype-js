@@ -1,0 +1,11 @@
+---
+applications:
+- name: configuration-service
+  memory: 512M
+  instances: 1
+  host: configuration-service-${random-word}
+  path: target/configuration-service.jar
+  env:
+    SPRING_PROFILES_ACTIVE: cloud
+    DEBUG: "true"
+    debug: "true"

@@ -1,0 +1,15 @@
+--- 
+applications: 
+  .: 
+    framework: 
+      name: node
+      info: 
+        mem: 64M
+        description: Node.js Application
+        exec: 
+    runtime: node06
+    mem: 64M
+    instances: 1
+    services: 
+      twitter-rabbit: 
+        type: rabbitmq

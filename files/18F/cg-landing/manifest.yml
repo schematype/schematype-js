@@ -1,0 +1,10 @@
+---
+applications:
+- name: landing
+memory: 64M
+domain: cloud.gov
+hosts:
+- ""
+- "www"
+path: _site
+buildpack: staticfile_buildpack

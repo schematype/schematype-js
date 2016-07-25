@@ -1,0 +1,34 @@
+---
+applications:
+- name: ruby-starter-app
+  memory: 512M
+  instances: 1
+  services:
+       ${name}-mysql-db:
+         type: mysql
+       #${name}-postgres-db:
+       #  type: postgresql
+       #${name}-rabbitmq3:
+       #  type: rabbitmq3
+       #${name}-mongo-db:
+        # type: mongodb
+       #${name}-filesystem:
+       #  type: filesystem
+       #${name}-redis:
+       #   type: redis
+       #${name}-harbor:
+        # type: harbor
+       #${name}-memcached:
+        # type: memcached
+  env:
+    USER_SERVICE: http://docs.hpcloud.com/#devplatform/2.0/helion/user/services/user-provided.html
+    CF_MGMT_TOOL: http://docs.hpcloud.com/#devplatform/2.0/helion/CLI/cfmgmt_growcluster_addservice.html
+  stackato:
+    hooks:
+      pre-running:
+      # change the DATABASE_URL scheme from mysql:// to mysql2:// since we aer using mysql2 gem. If you don't
+      # want to use this, you can use mysql gem too instead of mysql2 gem
+      - export DATABASE_URL=`echo $DATABASE_URL | sed 's/mysql/mysql2/'`
+      # run database migration after the DATABASE_URL has been changed
+      # to use the mysql2:// scheme
+      - rake db:migrate

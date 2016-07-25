@@ -1,0 +1,7 @@
+---
+applications:
+- name: mgw-rfp-template
+  buildpack: https://github.com/cloudfoundry/nodejs-buildpack.git#v1.5.14
+  command: ./start.sh
+  memory: 256MB
+  instances: 1

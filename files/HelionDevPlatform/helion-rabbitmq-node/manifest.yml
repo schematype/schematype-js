@@ -1,0 +1,11 @@
+---
+applications:
+  .:
+    name: helion-rabbitmq-node
+    framework:
+      name: node
+    mem: 128M
+    services:
+      messagequeue:
+        type: rabbitmq3
+    instances: 1

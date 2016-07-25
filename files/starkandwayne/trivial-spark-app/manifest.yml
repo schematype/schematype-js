@@ -1,0 +1,8 @@
+---
+applications:
+- name: spark-example
+  memory: 512M
+  instances: 1
+  path: build/libs/spark-example-0.1.0-SNAPSHOT.jar
+  buildpack: https://github.com/cloudfoundry/java-buildpack.git
+  stack: cflinuxfs2

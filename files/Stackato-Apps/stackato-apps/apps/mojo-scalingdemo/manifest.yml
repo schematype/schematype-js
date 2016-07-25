@@ -1,0 +1,9 @@
+applications:
+- name: mojo-scalingdemo
+  buildpack: https://github.com/ActiveState/stackato-buildpack-perl.git
+  instances: 3
+  mem: 64M
+  stackato:
+    ignores:
+    - local/
+    - .git/

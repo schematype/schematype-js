@@ -1,0 +1,17 @@
+
+---
+declared-services:
+  dialog-service:
+    label: dialog
+    plan: standard
+  natural-language-classifier-standard:
+    label: natural_language_classifier
+    plan: standard
+applications:
+- services:
+  - dialog-service
+  - natural-language-classifier-standard
+  name: conversational-agent-application-starter-kit
+  command: npm start
+  path: .
+  memory: 512M

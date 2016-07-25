@@ -1,0 +1,15 @@
+applications:
+- name: stackato-elasticsearch-plugin
+  buildpack: https://github.com/ryandotsmith/null-buildpack.git
+  instances: 1
+  mem: 512M
+  services:
+    ${name}-data:
+      type: filesystem
+  stackato:
+    hooks:
+      pre-running:
+      - mkdir -p $STACKATO_FILESYSTEM/data
+      - ln -s $STACKATO_FILESYSTEM/data data
+    ignores:
+    - .git

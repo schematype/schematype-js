@@ -1,0 +1,13 @@
+applications:
+- name: moin
+  memory: 64M
+  services:
+    ${name}-fs:
+      type: filesystem
+  stackato:
+    env:
+      MOIN_SECRET: s3cr3tk3y
+    hooks:
+      pre-running:
+      - ln -s $STACKATO_FILESYSTEM wiki
+      - cp -rn $PYTHONUSERBASE/share/moin/* wiki/

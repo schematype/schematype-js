@@ -1,0 +1,9 @@
+---
+applications:
+- name: sendgrid
+  memory: 256M
+  instances: 1
+  host: sendgrid-${random-word}
+  buildpack: https://github.com/zendtech/zend-server-php-buildpack-bluemix.git
+  services:
+  - mySendgrid  

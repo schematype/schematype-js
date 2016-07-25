@@ -1,0 +1,12 @@
+---
+declared-services:
+  tradeoff-analytics-service-standard:
+    label: tradeoff_analytics
+    plan: standard
+applications:
+- services:
+  - tradeoff-analytics-service-standard
+  name: tradeoff-analytics-demo
+  command: npm start
+  path: .
+  memory: 256M

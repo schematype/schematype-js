@@ -1,0 +1,6 @@
+---
+applications:
+  - name: proxy
+    memory: 64M
+    buildpack: go_buildpack
+

@@ -1,0 +1,16 @@
+--- 
+applications: 
+  .: 
+    infra: aws
+    command: node app.js
+    name: foodcrunch-merchant
+    framework: 
+      name: standalone
+      info: 
+        mem: 64M
+        description: Standalone Application
+        exec: 
+    instances: 1
+    runtime: node06
+    mem: 64M
+    url: ${name}.${target-base}

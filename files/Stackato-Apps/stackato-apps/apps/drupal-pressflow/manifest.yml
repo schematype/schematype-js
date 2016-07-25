@@ -1,0 +1,37 @@
+applications:
+- name: drupal-pressflow
+  buildpack: https://github.com/heroku/heroku-buildpack-php.git
+  instances: 1
+  mem: 256M
+  services:
+    ${name}-db:
+      type: mysql
+    ${name}-fs:
+      type: filesystem
+  stackato:
+    hooks:
+      post-staging:
+      # First we get drush and put it in the app root (more secure).
+      - curl -sfS http://ftp.drupal.org/files/projects/drush-7.x-5.1.tar.gz |
+        tar xzf -
+      - mv drush "$STACKATO_APP_ROOT"/
+      # create sites in the shared filesystem and migrate
+      - mkdir -p "$STACKATO_FILESYSTEM"/sites
+      - cp -r sites/* "$STACKATO_FILESYSTEM"/sites/
+      # remove unused directories
+      - rm -rf sites
+      # link to sites folder in the shared filesystem
+      - ln -s "$STACKATO_FILESYSTEM"/sites sites
+      # This does the full install.
+      - "$STACKATO_APP_ROOT/drush/drush -r $HOME site-install
+        -y --db-url=$DATABASE_URL --account-name=admin --account-pass=passwd
+        --site-name=Stackato --locale=en-US || true"
+      pre-running:
+      # Workaround to pass $VCAP_SERVICES to cron
+      - python vcap-workaround.py
+    min_version:
+      client: 1.4.3
+      server: 1.0
+    requirements:
+      ubuntu:
+      - libjpeg62

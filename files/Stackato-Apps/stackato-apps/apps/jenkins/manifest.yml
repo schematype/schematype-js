@@ -1,0 +1,11 @@
+applications:
+- name: jenkins
+  mem: 1024M
+  services:
+    ${name}-fs:
+      type: filesystem
+  stackato:
+    hooks:
+      pre-running:
+      - sh stackato-setup.sh
+  timeout: 180

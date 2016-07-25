@@ -1,0 +1,5 @@
+applications:
+- name: request-dumper
+  command: request-dumper
+  memory: 32M
+  instances: 1

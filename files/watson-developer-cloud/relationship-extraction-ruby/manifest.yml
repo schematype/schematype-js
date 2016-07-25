@@ -1,0 +1,11 @@
+---
+declared-services:
+  re-service:
+    label: relationship_extraction
+    plan: relationship_extraction_free_plan
+applications:
+- services:
+  - re-service
+  name: re-ruby
+  path: .
+  memory: 256M

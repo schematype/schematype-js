@@ -1,0 +1,6 @@
+---
+applications:
+  - name: cpu_jammer
+    instances: 1
+    env:
+      FIB_NUM: 20

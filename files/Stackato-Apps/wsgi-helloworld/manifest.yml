@@ -1,0 +1,3 @@
+applications:
+- name: wsgi-helloworld
+  memory: 32M

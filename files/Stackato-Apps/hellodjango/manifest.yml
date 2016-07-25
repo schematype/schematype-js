@@ -1,0 +1,6 @@
+applications:
+- name: hellodjango
+  memory: 32M
+  services:
+    ${name}-db:
+      type: postgresql

@@ -1,0 +1,10 @@
+---
+applications:
+- name: standalone-eureka
+  memory: 512M
+  instances: 1
+  host: standalone-eureka
+  path: target/standalone-eureka-1.0.0.jar
+  env:
+    SPRING_PROFILES_ACTIVE: cloud
+

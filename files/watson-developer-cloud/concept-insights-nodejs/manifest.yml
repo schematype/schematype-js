@@ -1,0 +1,11 @@
+declared-services:
+  concept-insights-standard:
+    label: concept_insights
+    plan: standard
+applications:
+- services:
+  - concept-insights-standard
+  name: concept-insights-demo
+  command: npm start
+  path: .
+  memory: 512M

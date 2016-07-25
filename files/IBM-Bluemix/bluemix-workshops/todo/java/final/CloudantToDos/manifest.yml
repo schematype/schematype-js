@@ -1,0 +1,9 @@
+---
+applications:
+- name: java-todo
+  memory: 512M
+  path: target/CloudantToDos-0.0.1-SNAPSHOT.war
+  services:
+  - todo-cloudant
+  env:
+    services_autoconfig_excludes: cloudantNoSQLDB=all

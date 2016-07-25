@@ -1,0 +1,6 @@
+---
+applications:
+- name: slimpong
+  memory: 128M
+  services:
+  - mysql

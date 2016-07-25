@@ -1,0 +1,6 @@
+---
+applications:
+- name: railspong
+  memory: 256M
+  services:
+  - mysql

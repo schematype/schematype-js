@@ -1,0 +1,6 @@
+---
+applications:
+  - name: io_jammer
+    instances: 1
+    env:
+      FILE_SIZE_MB: 20

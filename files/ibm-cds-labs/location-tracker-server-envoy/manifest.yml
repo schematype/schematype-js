@@ -1,0 +1,27 @@
+---
+declared-services:
+  cloudant-location-tracker-db:
+    label: cloudantNoSQLDB
+    plan: Shared
+applications:
+- name: cloudant-envoy
+  memory: 256M
+  instances: 1
+  domain: mybluemix.net
+  disk_quota: 512M
+  host: cloudant-envoy-XXXX
+  path: ./envoy-wrapper
+  services:
+  - cloudant-location-tracker-db
+  env:
+    ENVOY_AUTH: default
+- name: location-tracker-envoy
+  memory: 128M
+  host: location-tracker-envoy-XXXX
+  path: .
+  services:
+  - cloudant-location-tracker-db
+  env:
+    ENVOY_HOST: cloudant-envoy-xxxx.mybluemix.net
+    ENVOY_PORT: 443
+    ENVOY_AUTH: default

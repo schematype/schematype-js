@@ -1,0 +1,14 @@
+applications:
+- name: harbor-test
+  memory: 128
+  services:
+    udp-harbor-test:
+      type: harbor
+    both-harbor-test:
+      type: harbor
+    harbor-test:
+      type: harbor
+  stackato:
+    hooks:
+      pre-staging:
+      - npm cache clean

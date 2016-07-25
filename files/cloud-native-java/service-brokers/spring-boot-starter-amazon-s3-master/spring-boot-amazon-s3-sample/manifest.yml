@@ -1,0 +1,10 @@
+---
+applications:
+- name: s3-sample-app
+  path: ./target/spring-boot-amazon-s3-sample.jar
+  memory: 600M
+  instances: 1
+  timeout: 180
+  host: s3-sample-app
+  services:
+    - s3-service

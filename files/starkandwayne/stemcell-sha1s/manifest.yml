@@ -1,0 +1,7 @@
+---
+applications:
+- name: stemcell-sha1s
+  buildpack: staticfile_buildpack
+  domain: starkandwayne.com
+  instances: 2
+  memory: 16M

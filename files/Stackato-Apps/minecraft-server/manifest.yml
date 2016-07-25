@@ -1,0 +1,20 @@
+applications:
+- name: minecraft-server
+  memory: 1G
+  services:
+    minecraft-server-port:
+      type: harbor
+    world-data:
+      type: filesystem
+  stackato:
+    hooks:
+      pre-staging:
+      - wget https://s3.amazonaws.com/Minecraft.Download/versions/1.8.1/minecraft_server.1.8.1.jar
+      post-staging:
+      # Move the minecraft world to the Fileystem for storage
+      - mkdir -p $STACKATO_FILESYSTEM/world
+      - ln -s $STACKATO_FILESYSTEM/world world
+      pre-running:
+      # Sets Harbor's port as server-port
+      - sh update_server_properties.sh
+      - java -Xmx1024M -Xms1024M -jar minecraft_server.1.8.1.jar nogui &

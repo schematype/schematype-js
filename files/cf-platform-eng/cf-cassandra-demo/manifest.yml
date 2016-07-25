@@ -1,0 +1,8 @@
+---
+applications:
+- name: cassandra-demo
+  memory: 512M
+  instances: 1
+  path: build/libs/cassandra-demo-0.0.1-SNAPSHOT.jar
+  services:
+  - my-cassandra

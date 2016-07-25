@@ -1,0 +1,78 @@
+---
+name: concourse-vsphere
+
+director_uuid: BOSH-UUID
+
+releases:
+- name: concourse
+  version: latest
+- name: garden-linux
+  version: latest
+
+resource_pools:
+- name: concourse
+  network: concourse
+  stemcell:
+    name: bosh-vsphere-esxi-ubuntu-trusty-go_agent
+    version: latest
+  cloud_properties:
+    cpu: 4
+    ram: 8_192
+    disk: 64_000
+
+disk_pools:
+- name: db
+  disk_size: 64_000
+
+networks:
+- name: concourse
+  type: manual
+  subnets:
+  - range: 10.85.28.0/24
+    gateway: 10.85.28.1
+    dns: [10.87.8.10, 10.87.8.11]
+    cloud_properties:
+      name: bloodmyst
+
+jobs:
+- name: worker
+  instances: 1
+  resource_pool: concourse
+
+  templates:
+  - {release: concourse, name: groundcrew}
+  - {release: concourse, name: baggageclaim}
+  - {release: garden-linux, name: garden}
+
+  networks:
+  - name: concourse
+
+  properties:
+    garden:
+      listen_network: tcp
+      listen_address: 127.0.0.1:7777
+    groundcrew:
+      tags: ["vsphere-linux-worker"]
+      garden:
+        forward_address: 127.0.0.1:7777
+      baggageclaim:
+        forward_address: 127.0.0.1:7788
+      tsa:
+        host: ci.lattice.cf
+        host_public_key: TSA-PUBLIC-KEY
+        private_key: WORKER-PRIVATE-KEY
+
+compilation:
+  reuse_compilation_vms: true
+  workers: 1
+  network: concourse
+  cloud_properties:
+    cpu: 2
+    ram: 4_096
+    disk: 20_000
+
+update:
+  canaries: 1
+  canary_watch_time: 30000-90000
+  update_watch_time: 30000-90000
+  max_in_flight: 1

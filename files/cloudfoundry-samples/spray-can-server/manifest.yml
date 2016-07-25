@@ -1,0 +1,8 @@
+---
+applications:
+- name: simple-http-server
+  memory: 512M
+  instances: 1
+  host: simple-http-server-${random-word}
+  domain: cfapps.io
+  path: dist/simple-http-server/simple-http-server.zip

@@ -1,0 +1,13 @@
+---
+applications:
+- name: rabbitmq-spring
+  memory: 512M
+  instances: 1
+  host: rabbitmq-spring-${random-word}
+  path: target/rabbitmq-spring-1.0-SNAPSHOT.war
+  services:
+    rabbit-sample:
+      label: cloudamqp
+      provider: cloudamqp
+      version: n/a
+      plan: lemur

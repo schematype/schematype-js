@@ -1,0 +1,7 @@
+---
+name: apply-dev
+host: apply-dev
+domain: 18f.gov
+buildpack: python_buildpack
+env:
+    JOINING_18F_APP_SETTINGS: settings.py

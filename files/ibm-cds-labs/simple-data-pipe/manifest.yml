@@ -1,0 +1,19 @@
+---
+declared-services:
+  sdp-cloudant-service:
+    label: cloudantNoSQLDB
+    plan: Shared
+  pipes-sso-service:
+    label: SingleSignOn
+    plan: standard
+applications:
+- name: simple-data-pipe
+  memory: 512M
+  instances: 1
+  domain: mybluemix.net
+  random-route: true
+  disk_quota: 1024M
+  command: node --expose-gc server.js
+  path: .
+  services:
+  - sdp-cloudant-service

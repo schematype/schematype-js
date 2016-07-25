@@ -1,0 +1,17 @@
+---
+declared-services:
+  email-collector-datastore:
+    label: cloudantNoSQLDB
+    plan: Standard
+applications:
+- name: email-collector
+  host: email-collector
+  path: .
+  domain: mybluemix.net
+  instances: 1
+  memory: 128M
+  buildpack: sdk-for-nodejs
+  services:
+  - email-collector-datastore
+  - email-collector-sms
+  - email-collector-cats

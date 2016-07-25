@@ -1,0 +1,8 @@
+---
+applications:
+- name: spring-sendgrid
+  memory: 512M
+  instances: 1
+  path: build/libs/spring-sendgrid.war
+  services:
+    - sendgrid

@@ -1,0 +1,7 @@
+---
+applications:
+- name: mgw-statecw-faq
+  buildpack: staticfile_buildpack
+  path: ./_site
+  memory: 64MB
+  instances: 1

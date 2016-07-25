@@ -1,0 +1,7 @@
+---
+applications:
+- name: twilio
+  memory: 256M
+  instances: 1
+  host: twilio-${random-word}
+  buildpack: https://github.com/zendtech/zend-server-php-buildpack-bluemix.git

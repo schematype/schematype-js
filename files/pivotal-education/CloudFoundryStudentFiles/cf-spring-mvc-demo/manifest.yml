@@ -1,0 +1,8 @@
+applications:
+- name: cf-spring-mvc-demo
+  memory: 512M
+  # Add your name/initials to make the hostname unique
+  host: cf-spring-mvc-demo-xxx
+  # Currently defaults to PWS
+  domain: cfapps.io
+  path: pre-built/cf-spring-mvc-demo-0.0.1-SNAPSHOT.war

@@ -1,0 +1,11 @@
+---
+declared-services:
+  relationship-extraction-service:
+    label: relationship_extraction
+    plan: relationship_extraction_free_plan
+applications:
+- services:
+  - relationship-extraction-service
+  name: relationship-extraction-demo
+  path: .
+  memory: 256M

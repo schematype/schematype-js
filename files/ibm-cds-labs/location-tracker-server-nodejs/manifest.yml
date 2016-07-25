@@ -1,0 +1,11 @@
+---
+declared-services:
+  cloudant-location-tracker-db:
+    label: cloudantNoSQLDB
+    plan: Shared
+applications:
+- name: location-tracker
+  memory: 128M
+  host: location-tracker-${random-word}
+  services:
+  - cloudant-location-tracker-db

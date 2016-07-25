@@ -1,0 +1,9 @@
+---
+# all applications use these settings and services
+memory: 128M
+instances: 1
+applications:
+- name: blogalytics
+  path: .
+  timeout: 180
+  domain: 18f.gov

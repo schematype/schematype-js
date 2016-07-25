@@ -1,0 +1,11 @@
+declared-services:
+  dialog-service:
+    label: dialog
+    plan: standard
+applications:
+- services:
+  - dialog-service
+  name: dialog-tool
+  command: npm start
+  path: .
+  memory: 512M

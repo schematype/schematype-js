@@ -1,0 +1,6 @@
+---
+applications:
+- buildpack: https://github.com/cloudfoundry-community/staticfile-buildpack.git
+  random-route: true
+  name: demo_app_101
+  memory: 16M

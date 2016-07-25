@@ -1,0 +1,8 @@
+---
+applications:
+- name: atc-trello
+  host: atc-trello
+  memory: 512M
+  instances: 1
+  services:
+    - atc-trello-cups

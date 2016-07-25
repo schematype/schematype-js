@@ -1,0 +1,10 @@
+---
+applications:
+- name: match_twitter_search
+  path: target/twitter-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+  no-route: true
+  services:
+    - Insights for Twitter-mw
+    - Message Hub-hp
+  env:
+    JAVA_OPTS: -Djava.security.auth.login.config=$HOME/app/jaas.conf

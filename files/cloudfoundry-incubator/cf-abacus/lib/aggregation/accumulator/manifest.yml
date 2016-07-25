@@ -1,0 +1,22 @@
+applications:
+- name: abacus-usage-accumulator
+  host: abacus-usage-accumulator
+  path: .cfpack/app.zip
+  instances: 1
+  memory: 512M
+  disk_quota: 512M
+  env:
+    CONF: default
+    DEBUG: e-abacus-*
+    AGGREGATOR: abacus-usage-aggregator
+    PROVISIONING: abacus-provisioning-plugin
+    ACCOUNT: abacus-account-plugin
+    DB: abacus-pouchserver
+    EUREKA: abacus-eureka-plugin
+    NODE_MODULES_CACHE: false
+    SECURED: false
+    # AUTH_SERVER:
+    # CLIENT_ID:
+    # CLIENT_SECRET:
+    # JWTKEY:
+    # JWTALGO:

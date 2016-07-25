@@ -1,0 +1,3 @@
+applications:
+- name: dancer-helloworld
+  memory: 32M

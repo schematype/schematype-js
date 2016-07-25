@@ -1,0 +1,61 @@
+---
+domains:
+  - global.x.y.z
+
+users:
+  - username: joe
+    password: secret
+
+  - username: jhunt
+    password: yeah right
+
+organizations:
+
+  StarkAndWayne:
+    users:
+      joe: [OrgManager]
+
+    domains:
+      - a.b.c.d
+      - local.x.y.z
+
+    env:
+      ORGANZATION: Stark & Wayne
+
+    spaces:
+      Dev:
+        ssh: allowed
+        domain: a.b.c.d
+        users:
+          joe: [SpaceDeveloper]
+          jhunt: [SpaceManager]
+        env:
+          RUN_MODE: development
+
+        services:
+          mqbus: rabbitmq/basic
+
+        apps:
+          - name: app1
+            urls:
+              - lattice.bosh-lite.com
+              - lattice-x # implicit domain
+              - tcp-port.bosh-lite.com:9099/path
+            hostname: lattice
+            domain: local.x.y.z
+            repo: https://github.com/cloudfoundry-samples/lattice-app
+            memory: 256m
+            disk: 1g
+            instances: 2
+            env:
+              HOME: /tmp
+            shared:
+              - mqbus
+            bind:
+              sessions: postgres/free
+              datadb:   postgres/free
+
+          - name: app2
+            path: local/apps
+            bind:
+              db: postgres/really-expensive

@@ -1,0 +1,20 @@
+---
+name: {{ .DeploymentName }}
+director_uuid: {{ .DirectorUUID }}
+releases:
+- name: bosh-release
+  version: 0.1-dev
+update:
+  canaries: 2
+  canary_watch_time: 4000
+  max_in_flight: 1
+  update_watch_time: 20
+jobs:
+- name: simple
+  templates:
+  - name: simple
+  resource_pool: default
+  instances: 1
+  networks:
+  - name: default
+  properties: {}

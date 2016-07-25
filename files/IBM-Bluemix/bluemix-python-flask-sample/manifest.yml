@@ -1,0 +1,4 @@
+---
+applications:
+- name: bluemix-python-flask-sample
+  memory: 128M

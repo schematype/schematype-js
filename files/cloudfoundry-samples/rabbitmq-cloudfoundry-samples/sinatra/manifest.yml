@@ -1,0 +1,13 @@
+---
+applications:
+- name: rabbitmq-sinatra
+  memory: 256M
+  instances: 1
+  host: rabbitmq-sinatra-${random-word}
+  path: .
+  services:
+    rabbit-sinatra:
+      label: cloudamqp
+      provider: cloudamqp
+      version: n/a
+      plan: lemur

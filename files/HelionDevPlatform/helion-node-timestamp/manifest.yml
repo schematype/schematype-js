@@ -1,0 +1,4 @@
+applications:
+- name: helion-node-timestamp
+  description : Simple demo that prints the contents of the timestamp.txt file.
+  mem: 256M

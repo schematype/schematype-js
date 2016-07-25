@@ -1,0 +1,6 @@
+applications:
+- name: haste-server
+  mem: 128M
+  services:
+    file-backing:
+      type: filesystem

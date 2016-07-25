@@ -1,0 +1,12 @@
+applications:
+- disk_quota: 1024M
+  host: idemix-issuer-verifier
+  name: idemix-issuer-verifier
+  path: .
+  command: node app.js
+  domain: mybluemix.net
+  instances: 1
+  memory: 128M
+services:
+- IBM Identity Mixer-issuer
+- IBM Identity Mixer-verifier

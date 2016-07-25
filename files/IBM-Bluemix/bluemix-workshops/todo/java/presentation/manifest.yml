@@ -1,0 +1,6 @@
+---
+applications:
+- name: bluemix-java-workshop
+  memory: 64M
+  buildpack: https://github.com/cloudfoundry-community/staticfile-buildpack.git
+  host: bluemix-java-workshop

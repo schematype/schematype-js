@@ -1,0 +1,4 @@
+applications:
+- name: pyramid-virginia
+  instances: 1
+  memory: 64M

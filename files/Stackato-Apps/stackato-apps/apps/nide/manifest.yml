@@ -1,0 +1,10 @@
+applications:
+- name: nide
+  mem: 128M
+  services:
+    ${name}-fs:
+      type: filesystem
+  stackato:
+    hooks:
+      pre-running:
+      - sh prepare_project.sh

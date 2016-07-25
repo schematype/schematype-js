@@ -1,0 +1,11 @@
+---
+declared-services:
+  personality-insights-service:
+    label: personality_insights
+    plan: tiered
+applications:
+- services:
+  - personality-insights-service
+  name: personality-insights-java
+  path: webApp.war
+  memory: 512M

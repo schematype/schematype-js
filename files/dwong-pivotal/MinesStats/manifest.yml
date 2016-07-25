@@ -1,0 +1,5 @@
+---
+applications:
+- name: MinesDao
+  path: build/libs/mines-dao-0.0.1.jar
+  host: minesdao

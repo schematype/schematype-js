@@ -1,0 +1,6 @@
+---
+applications:
+- name: AdvancedOnlyGithub
+  memory: 32M
+  command: node app.js
+  host: AdvancedOnlyGithub

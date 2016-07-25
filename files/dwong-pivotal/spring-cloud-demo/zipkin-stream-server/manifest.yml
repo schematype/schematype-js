@@ -1,0 +1,11 @@
+---
+applications:
+- name: zipkin-stream-server
+  memory: 1G
+  path: target/zipkin-stream-server-0.0.1-SNAPSHOT.jar
+  env:
+    CF_TARGET: https://api.system.52.175.22.72.cf.pcfazure.com
+  services:
+  - rabbit
+  - zipkin-mysql
+

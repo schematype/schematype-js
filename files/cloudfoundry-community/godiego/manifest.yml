@@ -1,0 +1,15 @@
+---
+applications:
+- name: godiego
+  memory: 64M
+  instances: 1
+  # host: godiego
+  # domain: cfapps.io
+  path: .
+  buildpack: https://github.com/cloudfoundry-community/staticfile-buildpack
+  # services:
+  #   minipactdb:
+  #     label: elephantsql
+  #     provider: elephantsql
+  #     version: n/a
+  #     plan: turtle

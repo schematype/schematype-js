@@ -1,0 +1,9 @@
+applications:
+- name: hub-v2
+  memory: 512M
+  buildpack: ruby_buildpack
+  env:
+    TEAM_API_URL: https://team-api.18f.gov/public/api/team/
+    TEAM_API_CACHE_REFRESH_MINUTES: 60
+    TEAM_API_NEW_HIRE_WINDOW_DAYS: 40
+    

@@ -1,0 +1,16 @@
+applications:
+- name: termcast-kato
+  buildpack: https://github.com/ryandotsmith/null-buildpack.git
+  mem: 256M
+  # Running two servers:
+  # Node serves web pages on normal $PORT.
+  # Perl listens for termcast clients on Harbor port:
+  services:
+    app-termcast-server-port:
+      type: harbor
+  stackato:
+    hooks:
+      pre-staging:
+      - ./bin/pre-staging
+    # Push .git/ directory:
+    ignores: []

@@ -1,0 +1,6 @@
+---
+applications:
+- name: document-service
+  memory: 512M
+  instances: 1
+  path: target/document-service-1.0.war

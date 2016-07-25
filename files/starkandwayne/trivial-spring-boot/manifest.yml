@@ -1,0 +1,8 @@
+---
+applications:
+- name: trivial-spring-boot
+  memory: 512M
+  instances: 1
+  path: build/libs/trivial-spring-boot-0.1.0-SNAPSHOT.jar
+  buildpack: https://github.com/cloudfoundry/java-buildpack.git
+  stack: cflinuxfs2

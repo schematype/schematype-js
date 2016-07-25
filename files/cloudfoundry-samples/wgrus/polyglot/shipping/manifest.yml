@@ -1,0 +1,18 @@
+--- 
+applications: 
+  dist/wgrus-polyglot-shipping/wgrus-shipping.zip: 
+    name: wgrus-shipping
+    framework: 
+      name: standalone
+      info: 
+        mem: 64M
+        description: Standalone Application
+        exec: 
+    runtime: java
+    command: java $JAVA_OPTS -jar wgrus-polyglot-shipping_2.9.1-0.1.0-SNAPSHOT.jar
+    url: wgrus-shipping.cloudfoundry.com
+    mem: 128M
+    instances: 1
+    services: 
+      shipping: 
+        type: mongodb

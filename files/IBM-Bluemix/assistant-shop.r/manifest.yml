@@ -1,0 +1,31 @@
+---
+declared-services:
+  assistant-shop-r-speech-to-text:
+    label: speech_to_text
+    plan: standard
+  assistant-shop-r-rules:
+    label: businessrules
+    plan: standard
+  assistant-shop-r-workflow:
+    label: Workflow
+    plan: standard
+  assistant-shop-r-db:
+    label: cloudantNoSQLDB
+    plan: Shared
+  assistant-shop-r-alchemy:
+    label: alchemy_api
+    plan: free
+applications:
+- name: assistant-shop-r
+  host: assistant-shop-r
+  command: node app.js
+  path: .
+  memory: 512m
+  instances: 1
+  services:
+  - assistant-shop-r-rules
+  - assistant-shop-r-workflow
+  - assistant-shop-r-db
+  - assistant-shop-r-speech-to-text
+  - assistant-shop-r-alchemy
+  - assistant-shop-r-twilio

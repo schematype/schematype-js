@@ -1,0 +1,13 @@
+applications:
+- disk_quota: ${cf_disk_quota}
+  name: ${cf_appname}
+  host: ${cf_hostname}
+  instances: ${cf_instances}
+  memory: ${cf_memory}
+  timeout: ${cf_timeout}
+  domain: ${cf_domain}
+  buildpack: ${cf_buildpack_java}
+  stack: ${cf_stack}
+  path: boilerplate.war
+env:
+  REGION: ${cf_region}

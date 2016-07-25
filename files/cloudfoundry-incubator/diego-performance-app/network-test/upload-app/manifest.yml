@@ -1,0 +1,6 @@
+---
+applications:
+  - name: upload_jammer
+    instances: 1
+    env:
+      RESPONSE_SIZE_IN_MB: 1

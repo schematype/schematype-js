@@ -1,0 +1,10 @@
+applications:
+- name: ace
+  buildpack: https://github.com/ActiveState/nodejs-buildpack
+  mem: 256
+  stackato:
+    hooks:
+      pre-staging:
+      - git submodule update --init
+    ignores:
+    - node_nodules

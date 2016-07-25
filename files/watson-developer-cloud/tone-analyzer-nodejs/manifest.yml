@@ -1,0 +1,13 @@
+---
+declared-services:
+  tone-analyzer-standard:
+    label: tone_analyzer
+    plan: standard
+applications:
+- services:
+  - tone-analyzer-standard
+  name: tone-analyzer-demo
+  command: npm start
+  path: .
+  instances: 2
+  memory: 512MB

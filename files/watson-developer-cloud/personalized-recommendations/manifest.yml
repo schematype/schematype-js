@@ -1,0 +1,16 @@
+---
+declared-services:
+  tradeoff-analytics-service:
+    label: tradeoff_analytics
+    plan: standard
+  concept-insights-service:
+    label: concept_insights
+    plan: standard
+applications:
+- services:
+  - concept-insights-service
+  - tradeoff-analytics-service
+  name: personalized-recommendations
+  command: node app.js
+  path: .
+  memory: 512M

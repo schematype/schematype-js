@@ -1,0 +1,7 @@
+---
+applications:
+- name: helion-rabbitmq-php
+  buildpack: https://github.com/cloudfoundry/php-buildpack#v3.2.2
+  services:
+    rabbitmq:
+      type: rabbitmq3  

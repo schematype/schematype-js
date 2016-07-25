@@ -1,0 +1,5 @@
+---
+applications:
+- name: ci-test
+  memory: 512MB
+  path: target/ci-test-0.0.2-SNAPSHOT.jar

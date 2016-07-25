@@ -1,0 +1,17 @@
+---
+declared-services:
+  text-to-speech-service:
+    label: text_to_speech
+    plan: standard
+  visual-recognition-service:
+    label: visual_recognition
+    plan: standard
+applications:
+- services:
+  - text-to-speech-service
+  - visual-recognition-service
+  name: image-analysis
+  command: node app.js
+  path: .
+  memory: 512M
+  buildpack: https://github.com/jthomas/nodejs-buildpack.git

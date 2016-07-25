@@ -1,0 +1,8 @@
+applications:
+- name: cf-cloud-info-solution
+  memory: 512M
+  # Add your name/initials to make the hostname unique
+  host: cloud-info-solution-${random-word}
+  domain: cfapps.io
+  #path: build/lib/cf-cloud-info-solution-0.0.1-SNAPSHOT.war   # Gradle
+  path: target/cf-cloud-info-solution-0.0.1-SNAPSHOT.war   # Maven

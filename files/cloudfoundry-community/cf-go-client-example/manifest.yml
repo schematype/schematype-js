@@ -1,0 +1,6 @@
+---
+applications:
+- name: cf-go-client-example
+  memory: 256M
+  instances: 1
+  host: cf-go-client-example

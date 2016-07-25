@@ -1,0 +1,16 @@
+applications:
+- disk_quota: 512M
+  host: custom-identity-provider-with-user-management
+  name: custom-identity-provider-with-user-management
+  command: node .
+  instances: 1
+  memory: 512M
+  timeout: 180
+env:
+  NODE_MODULES_CACHE: false
+  ADMIN_USERNAME: demo
+  ADMIN_PASSWORD: demo
+  # CLOUDANT_ACCOUNT:
+  # CLOUDANT_API_KEY:
+  # CLOUDANT_API_PASSWORD:
+  # CLOUDANT_DB_NAME:

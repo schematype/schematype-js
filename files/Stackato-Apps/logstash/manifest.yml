@@ -1,0 +1,16 @@
+applications:
+- name: logstash
+  command: java -jar logstash-1.1.13-flatjar.jar agent -f logstash.conf
+  framework:
+    name: php
+    document-root: kibana
+  mem: 512M
+  services:
+    search:
+      type: elasticsearch
+    port:
+      type: harbor
+  stackato:
+    hooks:
+      pre-staging:
+      - python run.py

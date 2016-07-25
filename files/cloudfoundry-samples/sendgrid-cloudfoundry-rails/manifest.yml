@@ -1,0 +1,14 @@
+---
+applications:
+- name: sendgrid-rails
+  memory: 512M
+  instances: 1
+  host: sendgrid-rails-${random-word}
+  domain: cfapps.io
+  path: .
+  services:
+    sendgrid:
+      label: sendgrid
+      provider: sendgrid
+      version: n/a
+      plan: free

@@ -1,0 +1,10 @@
+---
+applications:
+- name: claw
+  host: cli
+  domain: run.pivotal.io
+  env:
+    GA_DOMAIN: pivotal.io
+    GA_TRACKING_ID: UA-52116311-1
+  services:
+    - claw-logs

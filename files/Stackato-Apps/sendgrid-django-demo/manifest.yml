@@ -1,0 +1,9 @@
+applications:
+- name: sendgrid-django-demo
+  memory: 64M
+  stackato:
+    env:
+      DJANGO_SETTINGS_MODULE:
+        default: settings
+    ignores:
+    - .git

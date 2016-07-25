@@ -1,0 +1,9 @@
+---
+applications:
+- name:	watson-qa
+  memory: 256M
+  instances: 1
+  host: watson-qa-${random-word}
+  buildpack: https://github.com/zendtech/zend-server-php-buildpack-bluemix.git
+  services:
+  - myWatsonQa

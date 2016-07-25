@@ -1,0 +1,129 @@
+---
+name: bosh-vsphere
+
+releases:
+- name: bosh
+  url: https://bosh.io/d/github.com/cloudfoundry/bosh?v=219
+  sha1: bbd03790a2839aab26d3fa4cfe1493d361872f33
+- name: bosh-vsphere-cpi
+  url: https://bosh.io/d/github.com/cloudfoundry-incubator/bosh-vsphere-cpi-release?v=11
+  sha1: bdba7dcd0291a5bff4f4f2b0e588c12cb2acfcf7
+
+resource_pools:
+- name: vms
+  network: private
+  stemcell:
+    url: https://bosh.io/d/stemcells/bosh-vsphere-esxi-ubuntu-trusty-go_agent?v=3115
+    sha1: 06e1ec5a54d338c2ed171826ef1bfde905300c32
+  cloud_properties:
+    cpu: 2
+    ram: 4_096
+    disk: 20_000
+  env:
+    bosh:
+      # c1oudc0w is a default password for vcap user
+      password: "$6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0"
+
+disk_pools:
+- name: disks
+  disk_size: 20_000
+
+networks:
+- name: private
+  type: manual
+  subnets:
+  - range: 10.85.28.0/24
+    gateway: 10.85.28.1
+    dns: [10.87.8.10, 10.87.8.11]
+    cloud_properties:
+      name: bloodmyst
+
+jobs:
+- name: bosh
+  instances: 1
+
+  templates:
+  - {name: nats, release: bosh}
+  - {name: redis, release: bosh}
+  - {name: postgres, release: bosh}
+  - {name: blobstore, release: bosh}
+  - {name: director, release: bosh}
+  - {name: health_monitor, release: bosh}
+  - {name: vsphere_cpi, release: bosh-vsphere-cpi}
+
+  resource_pool: vms
+  persistent_disk_pool: disks
+
+  networks:
+  - name: private
+    static_ips: [10.85.28.6]
+
+  properties:
+    nats:
+      address: 127.0.0.1
+      user: nats
+      password: nats-password
+
+    redis:
+      listen_address: 127.0.0.1
+      address: 127.0.0.1
+      password: redis-password
+
+    postgres: &db
+      listen_address: 127.0.0.1
+      host: 127.0.0.1
+      user: postgres
+      password: postgres-password
+      database: bosh
+      adapter: postgres
+
+    blobstore:
+      address: 10.85.28.6
+      port: 25250
+      provider: dav
+      director: {user: director, password: director-password}
+      agent: {user: agent, password: agent-password}
+
+    director:
+      address: 127.0.0.1
+      name: my-bosh
+      db: *db
+      cpi_job: vsphere_cpi
+      user_management:
+        provider: local
+        local:
+          users:
+          - {name: admin, password: admin}
+          - {name: hm, password: hm-password}
+
+    hm:
+      director_account: {user: hm, password: hm-password}
+      resurrector_enabled: true
+
+    vcenter: &vcenter
+      address: VCENTER-ADDRESS
+      user: VCENTER-USERNAME
+      password: VCENTER-PASSWORD
+      datacenters:
+      - name: pizza-boxes-dc
+        vm_folder: bloodmyst
+        template_folder: bloodmyst_bosh_templates
+        datastore_pattern: freenas-ds
+        persistent_datastore_pattern: freenas-ds
+        disk_path: bloodmyst
+        clusters: [pizza-boxes]
+
+    agent: {mbus: "nats://nats:nats-password@10.85.28.6:4222"}
+
+    ntp: &ntp [0.pool.ntp.org, 1.pool.ntp.org]
+
+cloud_provider:
+  template: {name: vsphere_cpi, release: bosh-vsphere-cpi}
+
+  mbus: "https://mbus:mbus-password@10.85.28.6:6868"
+
+  properties:
+    vcenter: *vcenter
+    agent: {mbus: "https://mbus:mbus-password@0.0.0.0:6868"}
+    blobstore: {provider: local, path: /var/vcap/micro_bosh/data/cache}
+    ntp: *ntp

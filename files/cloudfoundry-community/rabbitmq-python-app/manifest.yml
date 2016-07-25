@@ -1,0 +1,9 @@
+
+---
+applications:
+- name: rabbitmq-python-app
+  memory: 128M
+  services:
+  - rmq
+  env:
+    RMQ_SERVICE: rabbitmq-36

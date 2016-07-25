@@ -1,0 +1,5 @@
+---
+applications:
+- name: fib
+  command: rackup -p $PORT
+  memory: 128M

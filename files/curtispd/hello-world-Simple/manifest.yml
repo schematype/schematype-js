@@ -1,0 +1,3 @@
+applications:
+- name: node-hello-world
+  memory: 128M

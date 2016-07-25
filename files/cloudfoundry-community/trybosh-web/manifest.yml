@@ -1,0 +1,7 @@
+---
+applications:
+- name: trybosh
+  memory: 256M
+  instances: 1
+  url: trybosh.${target-base}
+  path: .

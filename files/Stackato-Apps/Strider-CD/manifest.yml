@@ -1,0 +1,15 @@
+applications:
+- name: strider-cd
+  memory: 256M
+  services:
+    ${name}-db:
+      type: mongodb
+  stackato:
+    env:
+      DB_URI:
+        default: $MONGODB_URL
+      SERVER_NAME:
+        default: ${name}.${target-base}
+    hooks:
+      pre-running:
+      - strider addUser -a -l stackato@stackato.com -p stackato

@@ -1,0 +1,13 @@
+---
+applications:
+  .:
+    name: dotnet
+    framework:
+      name: aspdotnet
+      info:
+        mem: 256M
+        description: sampledotnetapp
+        exec: 
+    url: ${name}.${target-base}
+    mem: 256M
+    instances: 1

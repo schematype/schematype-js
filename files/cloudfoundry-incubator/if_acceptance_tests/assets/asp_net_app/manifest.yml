@@ -1,0 +1,5 @@
+---
+applications:
+- name: asp_net_app
+  memory: 1G
+  stack: windows2012

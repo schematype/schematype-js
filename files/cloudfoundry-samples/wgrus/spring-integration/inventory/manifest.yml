@@ -1,0 +1,22 @@
+--- 
+applications: 
+  target/appassembler/: 
+    name: wgrus-inventory
+    framework: 
+      name: standalone
+      info: 
+        mem: 64M
+        description: Standalone Application
+        exec: 
+    runtime: java
+    command: bin/demo
+    url: 
+    mem: 256M
+    instances: 1
+    services: 
+      message-store: 
+        type: mongodb
+      orders: 
+        type: rabbitmq
+      inventory: 
+        type: redis

@@ -1,0 +1,5 @@
+---
+applications:
+- name:    on-prem-db-crud-access-swagger-client-sample
+  host:    on-prem-db-crud-access-swagger-client-sample-${random-word}
+  memory:  128M

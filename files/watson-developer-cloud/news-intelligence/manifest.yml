@@ -1,0 +1,11 @@
+declared-services:
+  tone-analyzer-standard:
+    label: tone_analyzer
+    plan: standard
+applications:
+- name: news-intelligence
+  command: npm start
+  path: .
+  memory: 512M
+  services:
+  - tone-analyzer-standard

@@ -1,0 +1,8 @@
+---
+applications:
+- name: node-test-app
+  memory: 256M
+  instances: 1
+  host: node-test-app
+  domain: cfapps.io
+  command: node server.js

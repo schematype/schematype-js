@@ -1,0 +1,9 @@
+applications:
+- name: on-prem-data-source-access-test 
+  path: target/OnPremDataSourceAccessTest-0.1.0.war
+  memory: 512M
+  instances: 1
+  host: on-prem-data-source-access-test-${random-word}
+  domain: mybluemix.net
+  random-route: true
+  disk_quota: 512M

@@ -1,0 +1,7 @@
+applications:
+- name: hello-java-mysql
+  memory: 512M
+  path: target/zjava-mysql-1.0
+  services:
+    ${name}-db:
+      type: mysql

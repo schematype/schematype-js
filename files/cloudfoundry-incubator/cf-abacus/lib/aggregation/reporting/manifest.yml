@@ -1,0 +1,21 @@
+applications:
+- name: abacus-usage-reporting
+  host: abacus-usage-reporting
+  path: .cfpack/app.zip
+  instances: 1
+  memory: 512M
+  disk_quota: 512M
+  env:
+    CONF: default
+    DEBUG: e-abacus-*
+    PROVISIONING: abacus-provisioning-plugin
+    ACCOUNT: abacus-account-plugin
+    DB: abacus-pouchserver
+    EUREKA: abacus-eureka-plugin
+    NODE_MODULES_CACHE: false
+    SECURED: false
+    # AUTH_SERVER:
+    # CLIENT_ID:
+    # CLIENT_SECRET:
+    # JWTKEY:
+    # JWTALGO:

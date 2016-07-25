@@ -1,0 +1,9 @@
+---
+applications:
+- name:	mysql
+  memory: 256M
+  instances: 1
+  host: mysql-${random-word}
+  buildpack: https://github.com/zendtech/zend-server-php-buildpack-bluemix.git
+  services:
+  - mySql

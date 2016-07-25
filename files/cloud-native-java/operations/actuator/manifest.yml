@@ -1,0 +1,11 @@
+---
+applications:
+- name: actuator
+  memory: 512M
+  instances: 1
+  host: actuator-${random-word}
+  path: target/actuator.jar
+  env:
+    SPRING_PROFILES_ACTIVE: cloud
+    DEBUG: "true"
+    debug: "true"

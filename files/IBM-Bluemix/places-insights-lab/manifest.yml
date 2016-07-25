@@ -1,0 +1,14 @@
+---
+declared-services:
+  places-twitterinsights:
+    label: twitterinsights
+    plan: Free
+  places-weatherinsights:
+    label: weatherinsights
+    plan: Free-v2
+applications:
+- services:
+  - places-twitterinsights
+  - places-weatherinsights
+  name:       places-insights-lab
+  host:       places-insights-lab

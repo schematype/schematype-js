@@ -1,0 +1,23 @@
+---
+applications:
+- name: java
+  memory: 512M
+  path: build/java-starter-app-1.0.war
+  services:
+    ${name}-mysql-db:
+      type: mysql
+    #${name}-postgres-db:
+      #type: postgresql
+    #${name}-rabbitmq3:
+      #type: rabbitmq3
+    #${name}-mongo-db:
+      #type: mongodb
+    #${name}-filesystem:
+      #type: filesystem
+    #${name}-harbor:
+      #type: harbor
+    #${name}-memcached:
+      #type: memcached
+  helion:
+    env:
+        ENV_VAR: ${name}

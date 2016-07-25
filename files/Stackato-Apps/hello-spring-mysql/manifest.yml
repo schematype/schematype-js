@@ -1,0 +1,8 @@
+applications:
+- name: hello-spring-mysql
+  buildpack: https://github.com/cloudfoundry/java-buildpack#v2.1
+  memory: 512M
+  path: target/hello-spring-mysql.war
+  services:
+    mysql-spring:
+      type: mysql

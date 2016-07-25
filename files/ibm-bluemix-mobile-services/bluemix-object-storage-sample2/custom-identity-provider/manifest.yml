@@ -1,0 +1,5 @@
+applications:
+- disk_quota: 128M
+  host: <host>
+  name: <name>
+  instances: 1

@@ -1,0 +1,14 @@
+---
+applications:
+- path: .
+  memory: 512M
+  instances: 1
+  domain: mybluemix.net
+  name: merlin-enablement-demo
+  host: merlin-enablement-demo
+  disk_quota: 1024M
+  buildpack: https://github.com/cloudfoundry/ruby-buildpack.git
+  env:
+      FOUR_SQUARE_CLIENT_ID: REPLACE_ME
+      FOUR_SQUARE_CLIENT_SECRET: REPLACE_ME
+      GOOGLE_MAP_JS_API_KEY: REPLACE_ME

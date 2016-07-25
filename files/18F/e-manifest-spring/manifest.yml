@@ -1,0 +1,8 @@
+---
+applications:
+- name: e-manifest-spring
+  host: e-manifest-spring
+  instances: 1
+  domain: 18f.gov
+  path: target/e-manifest-0.0.1.BUILD-SNAPSHOT.jar
+  memory: 512MB

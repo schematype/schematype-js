@@ -1,0 +1,8 @@
+---
+applications:
+- name: iaa-pdf-api
+  memory: 128M
+  instances: 1
+  domain: 18f.gov
+  hostname: iaa-pdf-api
+  buildpack: https://github.com/ddollar/heroku-buildpack-multi.git

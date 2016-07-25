@@ -1,0 +1,8 @@
+declared-services:
+  logistics-wizard-erp-db:
+    label: elephantsql
+    plan: turtle
+applications:
+- services:
+  - logistics-wizard-erp-db
+  name: logistics-wizard-erp

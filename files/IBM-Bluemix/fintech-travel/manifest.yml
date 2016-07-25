@@ -1,0 +1,26 @@
+---
+declared-services:
+  MQLight-sampleservice:
+    label: mqlight
+    plan: standard
+  Cloudant-NoSQL-sampleservice:
+    label: cloudantNoSQLDB
+    plan: Shared
+applications:
+- name:  fintech-travel-backend
+  disk: 1024M
+  command: node app-backend.js
+  memory: 1GB
+  instances: 1
+  no-route: true
+  services:
+  - MQLight-sampleservice
+  - Cloudant-NoSQL-sampleservice
+- name:  fintech-travel-frontend
+  disk: 1024M
+  command: node app-frontend.js
+  memory: 1GB
+  host: my-fintech-travel-demo12345
+  services:
+  - MQLight-sampleservice
+  - Cloudant-NoSQL-sampleservice

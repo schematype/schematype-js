@@ -1,0 +1,86 @@
+---
+applications:
+- name: api
+  host: fbopen-dev-api
+  path: ./api
+  command: node app.js
+  services:
+    - es-20151116
+    - elk-logs
+- name: web
+  host: fbopen-dev-web
+  path: ./flask-www
+  command: python fbopenapp.py
+  buildpack: python_buildpack
+  services:
+    - creds
+    - elk-logs
+  env:
+    FBOPEN_API_HOST: http://fbopen-dev-api.18f.gov/
+    FBOPEN_API_PATH: /v0/opps
+- name: cron
+  no-route: true
+  disk_quota: 256M
+  memory: 128M
+  path: ./cf-cron
+  env:
+    CF_CREDS: es-20151116
+    PREP_JOB: "/bin/bash, prep.sh, creds.uri"
+    CRON_JOB: "/bin/bash, job.sh, creds.uri"
+    CRON_SCHEDULE: "* * * * * *"
+  services:
+    - es-20151116
+    - elk-logs
+- name: grants
+  no-route: true
+  disk_quota: 1GB
+  memory: 1GB
+  path: ./loaders
+  command: node cron.js grants.gov/grants-nightly
+  buildpack: nodejs_buildpack
+  env:
+    CRON_TIME: "30 12 * * *"
+    FBOPEN_INDEX: fbopen
+    NEW_RELIC_APP_NAME: loaders-grants.gov (dev)
+    # NEW_RELIC_LICENSE_KEY: use cf set-env
+    # use trace while debugging and getting client running, later info
+    NEW_RELIC_LOG_LEVEL: trace
+  services:
+    - es-20151116
+    - elk-logs
+- name: fbo
+  no-route: true
+  disk_quota: 1GB
+  memory: 1GB
+  path: ./loaders
+  command: node cron.js fbo.gov/fbo-nightly
+  buildpack: nodejs_buildpack
+  env:
+    CRON_TIME: "35 12 * * *"
+    FBOPEN_INDEX: fbopen
+    NEW_RELIC_APP_NAME: loaders-fbo.gov (dev)
+    # NEW_RELIC_LICENSE_KEY: use cf set-env
+    # use trace while debugging and getting client running, later info
+    NEW_RELIC_LOG_LEVEL: trace
+    PATH: $HOME/vendor/node/bin/:$PATH
+  services:
+    - es-20151116
+    - elk-logs
+- name: bids
+  no-route: true
+  disk_quota: 512MB
+  memory: 512MB
+  path: ./loaders
+  command: node cron.js bids.state.gov/bids-nightly
+  buildpack: nodejs_buildpack
+  env:
+    CRON_TIME: "40 12 * * *"
+    FBOPEN_INDEX: fbopen
+    NEW_RELIC_APP_NAME: loaders-bids.state.gov (dev)
+    # NEW_RELIC_LICENSE_KEY: use cf set-env
+    # use trace while debugging and getting client running, later info
+    NEW_RELIC_LOG_LEVEL: trace
+    PATH: $HOME/vendor/node/bin/:$PATH
+  services:
+    - es-20151116
+    - elk-logs

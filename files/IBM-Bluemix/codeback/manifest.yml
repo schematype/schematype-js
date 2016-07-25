@@ -1,0 +1,9 @@
+applications:
+- path: .
+  memory: 128M
+  instances: 1
+  name: codeback
+  host: codeback
+  disk_quota: 1024M
+  command: codeback
+  buildpack: https://github.com/cloudfoundry/go-buildpack.git

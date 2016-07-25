@@ -1,0 +1,19 @@
+---
+declared-services:
+  talent-manager-db:
+    label: cloudantNoSQLDB
+    plan: Shared
+  personality-insights-talent-manager:
+    label: personality_insights
+    plan: tiered
+applications:
+- disk_quota: 1024M
+  host: talent-manager
+  name: talent-manager
+  path: ./webStarterApp.war
+  instances: 1
+  memory: 512M
+  buildpack: java_buildpack
+  services:
+    - talent-manager-db
+    - personality-insights-talent-manager

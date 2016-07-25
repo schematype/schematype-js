@@ -1,0 +1,21 @@
+applications:
+- name: python
+  memory: 128M
+  services:
+    ${name}-mysql-db:
+      type: mysql
+#    ${name}-postgres-db:
+#      type: postgresql
+#    ${name}-rabbitmq3:
+#      type: rabbitmq3
+#    ${name}-mongo-db:
+#      type: mongodb
+#    ${name}-filesystem:
+#      type: filesystem
+#    ${name}-harbor:
+#      type: harbor
+#    ${name}-memcached:
+#      type: memcached
+  env:
+    USER_SERVICE: http://docs.hpcloud.com/#devplatform/2.0/helion/user/services/user-provided.html
+    CF_MGMT_TOOL: http://docs.hpcloud.com/#devplatform/2.0/helion/CLI/cfmgmt_growcluster_addservice.html

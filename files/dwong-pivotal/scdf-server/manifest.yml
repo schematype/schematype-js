@@ -1,0 +1,20 @@
+---
+applications:
+- name: scdf-server2
+  memory: 1024M
+  host: scdf-server2
+  path: target/scdf-server-0.0.1-SNAPSHOT.jar
+  env:
+    SPRING_CLOUD_DEPLOYER_CLOUDFOUNDRY_BUILDPACK: java_buildpack_offline
+    SPRING_CLOUD_DEPLOYER_CLOUDFOUNDRY_DOMAIN: app.52.175.22.72.cf.pcfazure.com
+    SPRING_CLOUD_DEPLOYER_CLOUDFOUNDRY_ORG: manulife
+    SPRING_CLOUD_DEPLOYER_CLOUDFOUNDRY_PASSWORD: password
+    SPRING_CLOUD_DEPLOYER_CLOUDFOUNDRY_SERVICES: scdf-redis,scdf-rabbitmq,scdf-mysql
+    SPRING_CLOUD_DEPLOYER_CLOUDFOUNDRY_SKIP_SSL_VALIDATION: true
+    SPRING_CLOUD_DEPLOYER_CLOUDFOUNDRY_SPACE: development
+    SPRING_CLOUD_DEPLOYER_CLOUDFOUNDRY_URL: https://api.system.52.175.22.72.cf.pcfazure.com
+    SPRING_CLOUD_DEPLOYER_CLOUDFOUNDRY_USERNAME: dwong
+  services:
+  - scdf-redis
+  - scdf-mysql
+  - scdf-rabbitmq

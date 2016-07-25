@@ -1,0 +1,12 @@
+---
+applications:
+  - name: pong
+    memory: 256M
+    instances: 1
+    path: .
+    command: ruby server.rb
+
+# code_snippet ruby-2b start
+    services:
+      - redis
+# code_snippet ruby-2b end

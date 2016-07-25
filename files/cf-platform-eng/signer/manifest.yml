@@ -1,0 +1,7 @@
+---
+applications:
+- name: signer
+  path: target/signer-1.0.0.jar
+  buildpack: java_buildpack_offline
+  services:
+    - fusion

@@ -1,0 +1,17 @@
+---
+applications:
+  .:
+    name: demostore
+    framework:
+      name: php
+      info:
+        mem: 128M
+        description: PHP Application
+        exec: 
+    infra: clc-uc01
+    url: ${name}.${target-base}
+    mem: 128M
+    instances: 1
+    services:
+      demostoredb:
+        type: mysql

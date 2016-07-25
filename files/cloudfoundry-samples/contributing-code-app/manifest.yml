@@ -1,0 +1,20 @@
+---
+applications:
+  .:
+    name: ccworke
+    framework:
+      name: standalone
+      info:
+        mem: 64M
+        description: Standalone Application
+        exec: 
+    runtime: ruby19
+    command: bundle exec rake VERBOSE=true QUEUE="*" resque:work
+    url: 
+    mem: 128M
+    instances: 1
+    services:
+      mydb:
+        type: mysql
+      myque:
+        type: redis

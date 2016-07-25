@@ -1,0 +1,6 @@
+---
+applications:
+  - name: download_jammer
+    instances: 1
+    env:
+      DOWNLOAD_LOCATION: http://upload-jammer.diego-1.cf-app.com

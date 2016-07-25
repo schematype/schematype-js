@@ -1,0 +1,11 @@
+---
+declared-services:
+  dialog-service:
+    label: dialog
+    plan: standard
+applications:
+- services:
+  - dialog-service
+  name: dialog-java
+  path: webApp.war
+  memory: 512M

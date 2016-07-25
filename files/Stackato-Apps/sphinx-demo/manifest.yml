@@ -1,0 +1,4 @@
+applications:
+- name: sphinx-demo
+  buildpack: https://github.com/kennethreitz/sphinx-buildpack.git
+  memory: 256M

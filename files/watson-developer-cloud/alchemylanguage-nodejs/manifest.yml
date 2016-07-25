@@ -1,0 +1,13 @@
+---
+declared-services:
+  alchemy:
+    label: alchemy_api
+    plan: standard
+applications:
+- name: alchemy-language-demo
+  command: npm start
+  path: .
+  instances: 1
+  memory: 512MB
+  env:
+    NPM_CONFIG_PRODUCTION: false

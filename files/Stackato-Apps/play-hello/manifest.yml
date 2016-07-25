@@ -1,0 +1,12 @@
+applications:
+- name: play-hello
+  buildpack: https://github.com/heroku/heroku-buildpack-play.git
+  memory: 256M
+  stackato:
+    env:
+      PATH:
+        default: .play:.jdk/bin:.tools:/usr/local/bin:/usr/bin:/bin
+      JAVA_OPTS:
+        default: -Xmx384m -Xss512k -XX:+UseCompressedOops
+      PLAY_OPTS:
+        default: --%prod -Dprecompiled=true

@@ -1,0 +1,6 @@
+applications:
+- name: example-python-django
+  memory: 64M
+  services:
+    ${name}-db:
+      type: mysql

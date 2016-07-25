@@ -1,0 +1,8 @@
+applications:
+- name: cf-cloud-info
+  memory: 512M
+  # Add your name/initials to make the hostname unique
+  host: cf-cloud-info-${random-word}
+  domain: cfapps.io
+  #path: build/lib/psd-0.0.1-SNAPSHOT.war  #Gradle
+  path: target/psd-0.0.1-SNAPSHOT.war  #Maven

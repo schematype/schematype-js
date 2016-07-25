@@ -1,0 +1,8 @@
+---
+applications:
+  "app/target":
+    name: moviefun
+    mem: 512M  
+    services:
+      movieDatabase:
+        type: mysql

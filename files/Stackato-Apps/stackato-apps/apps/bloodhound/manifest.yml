@@ -1,0 +1,12 @@
+applications:
+- name: bloodhound
+  mem: 512M
+  services:
+    ${name}-db:
+      type: mysql
+  stackato:
+    hooks:
+      pre-running:
+      - trac-admin main initenv bloodhound $DATABASE_URL --inherit=base.ini
+      - trac-admin main wiki upgrade
+      - trac-admin main permission add admin TRAC_ADMIN

@@ -1,0 +1,12 @@
+---
+declared-services:
+  speech-to-text-service-standard:
+    label: speech_to_text
+    plan: standard
+applications:
+- name: speech-to-text-iot-demo
+  command: node app.js
+  path: .
+  memory: 256m
+  services:
+  - speech-to-text-service-standard

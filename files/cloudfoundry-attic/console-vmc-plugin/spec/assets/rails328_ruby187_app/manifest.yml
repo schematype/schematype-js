@@ -1,0 +1,9 @@
+--- 
+applications: 
+  .: 
+    instances: 1
+    runtime: ruby18
+    memory: 128M
+    framework: rails3
+    name: railsfoo
+    url: railsfoo.${target-base}

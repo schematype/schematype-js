@@ -1,0 +1,20 @@
+---
+declared-services:
+  cloudant-photo-analyzer:
+    label: cloudantNoSQLDB
+    plan: Shared
+  visual-recognition-photo-analyzer:
+    label: watson_vision_combined
+    plan: free
+applications:
+- name: facebook-photo-analyzer
+  framework: node
+  runtime: node12
+  memory: 256M
+  instances: 1
+  host: facebook-photo-analyzer
+  path: .
+  command: node app.js
+  services:
+  - visual-recognition-photo-analyzer
+  - cloudant-photo-analyzer

@@ -1,0 +1,7 @@
+applications:
+- name: tasklist
+  framework:
+    name: php
+  services:
+    ${name}-db:
+      type: couchdb

@@ -1,0 +1,9 @@
+--- 
+applications: 
+  .: 
+    name: memory-hog
+    instances: 1
+    runtime: ruby19
+    host: memory-hog-${random-word}
+    mem: 128M
+    command: ruby memhog.rb -p $PORT

@@ -1,0 +1,8 @@
+---
+applications:
+- name: hello-lang-service
+  memory: 512M
+  instances: 1
+  path: target/hello-lang-service-1.0.0.jar
+  env:
+    SPRING_PROFILES_ACTIVE: cloud

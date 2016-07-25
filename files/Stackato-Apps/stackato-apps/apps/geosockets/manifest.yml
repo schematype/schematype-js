@@ -1,0 +1,9 @@
+applications:
+- name: geosockets
+  mem: 256
+  services:
+    user-store:
+      type: redis
+  stackato:
+    ignores:
+    - node_modules

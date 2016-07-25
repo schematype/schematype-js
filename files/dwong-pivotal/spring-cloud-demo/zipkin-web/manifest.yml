@@ -1,0 +1,8 @@
+---
+applications:
+- name: zipkin-web
+  memory: 1024M
+  host: zipkin-web
+  path: lib/zipkin-web-all.jar
+  env:
+    JBP_CONFIG_JAVA_MAIN: '{arguments: "-zipkin.web.port=8080 -zipkin.web.rootUrl=/ -zipkin.web.query.dest=“zipkin-stream-server.app.52.175.22.72.cf.pcfazure.com:80” -zipkin.web.resourcesRoot=."}'

@@ -1,0 +1,8 @@
+---
+applications:
+- name: europeana-sitemap
+  memory: 2560M
+  instances: 1
+  host: europeana-sitemap
+  path: target/sitemap-1.0-SNAPSHOT.war
+  buildpack: https://github.com/europeana/java-buildpack.git#feat/java8

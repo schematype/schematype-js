@@ -1,0 +1,8 @@
+applications:
+- name: cakephp
+  buildpack: https://github.com/heroku/heroku-buildpack-php.git
+  instances: 1
+  mem: 128
+  services:
+    ${name}-db:
+      type: mysql

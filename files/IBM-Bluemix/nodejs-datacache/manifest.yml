@@ -1,0 +1,11 @@
+---
+declared-services: 
+  sample-nodejs-cache-DataCache: 
+    label: DataCache 
+    plan: starter
+applications:
+- name: sample-nodejs-cache
+  random-route: true
+  memory: 256M
+  services:
+  - sample-nodejs-cache-DataCache

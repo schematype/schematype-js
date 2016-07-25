@@ -1,0 +1,7 @@
+---
+applications:
+- name: federalist-origin
+buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
+domain: 18f.gov
+memory: 64M
+instances: 2

@@ -1,0 +1,7 @@
+---
+applications:
+  - name: slow-broker
+    memory: 512M
+    host: slow-broker
+    env:
+      WAIT_SECONDS: 31

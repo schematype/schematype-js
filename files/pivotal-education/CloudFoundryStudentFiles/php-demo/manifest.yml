@@ -1,0 +1,7 @@
+---
+applications:
+- name: php-demo
+  memory: 256M
+  instances: 1
+  # Add your name/initials to make the hostname unique
+  host: php-demo-${random-word}

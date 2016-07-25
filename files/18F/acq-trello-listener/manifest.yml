@@ -1,0 +1,10 @@
+---
+applications:
+- name: acq-trello-listener
+  buildpack: https://github.com/cloudfoundry/nodejs-buildpack.git#v1.5.14
+  memory: 512M
+  disk_quota: 256M
+  instances: 1
+  host: acq-trello-listener
+  services:
+    - acq-trello-cups

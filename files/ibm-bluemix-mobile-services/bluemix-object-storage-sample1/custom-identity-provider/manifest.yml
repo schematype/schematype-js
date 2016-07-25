@@ -1,0 +1,7 @@
+applications:
+- disk_quota: 512M
+  host: sample1-cidp
+  name: sample1-cidp
+  instances: 1
+  services:
+   - <object-storage instance>

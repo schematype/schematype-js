@@ -1,0 +1,11 @@
+---
+applications:
+- name: iaa-mvp
+  memory: 256M
+  instances: 1
+  domain: 18f.gov
+  hostname: iaa-mvp
+  buildpack: https://github.com/cloudfoundry-community/cf-meteor-buildpack.git
+
+env:
+  DISABLE_WEBSOCKETS: 1

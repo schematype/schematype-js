@@ -1,0 +1,8 @@
+applications:
+- name: hugo
+  buildpack: https://github.com/hpcloud/staticfile-buildpack#custom-404
+  memory: 32M
+  stackato:
+    hooks:
+      pre-staging:
+      - ruby update_baseurl.rb

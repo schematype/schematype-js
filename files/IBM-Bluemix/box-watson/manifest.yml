@@ -1,0 +1,17 @@
+---
+declared-services:
+  personality-insights-box:
+    label: personality_insights
+    plan: tiered
+applications:
+- name: personality-box
+  host: personality-box
+  framework: node
+  runtime: node12
+  memory: 128M
+  instances: 1
+  path: .
+  command: node app.js
+  services:
+  - personality-insights-box
+  - box

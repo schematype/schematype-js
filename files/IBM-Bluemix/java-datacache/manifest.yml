@@ -1,0 +1,12 @@
+---
+declared-services: 
+  sample-java-cache-DataCache: 
+    label: DataCache 
+    plan: starter
+applications:
+- name: sample-java-cache
+  random-route: true
+  memory: 512M
+  services:
+  - sample-java-cache-DataCache
+  path: JavaCacheApp.war

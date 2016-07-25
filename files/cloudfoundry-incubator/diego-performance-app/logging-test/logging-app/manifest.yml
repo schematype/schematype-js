@@ -1,0 +1,6 @@
+---
+applications:
+  - name: log_jammer
+    instances: 1
+    env:
+      MESSAGES_PER_SECOND: 100

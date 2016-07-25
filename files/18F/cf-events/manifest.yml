@@ -1,0 +1,6 @@
+memory: 64M
+instances: 1
+buildpack: https://github.com/cloudfoundry/go-buildpack.git
+applications:
+- name: cf-events
+  path: .

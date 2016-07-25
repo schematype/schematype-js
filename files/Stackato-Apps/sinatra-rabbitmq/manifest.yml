@@ -1,0 +1,6 @@
+applications:
+- name: sinatra-rabbitmq
+  memory: 64M
+  services:
+    rabbitmq-sinatra:
+      type: rabbitmq

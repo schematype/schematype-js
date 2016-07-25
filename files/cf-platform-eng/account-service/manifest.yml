@@ -1,0 +1,11 @@
+---
+applications:
+- name: account-service
+  memory: 512M
+  instances: 1
+  path: target/account-service-1.0.0.jar
+  buildpack: java_buildpack
+  services: [ account-db ]
+  env:
+    SPRING_PROFILES_ACTIVE: cloud
+    EUREKA_SERVER: http://standalone-eureka.cfapps.io/eureka/

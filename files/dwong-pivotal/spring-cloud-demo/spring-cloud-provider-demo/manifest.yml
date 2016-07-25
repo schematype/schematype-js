@@ -1,0 +1,13 @@
+---
+applications:
+- name: spring-cloud-provider-demo
+  memory: 1G
+  path: target/spring-cloud-provider-demo-0.0.1-SNAPSHOT.jar
+  env:
+    CF_TARGET: https://api.system.52.175.22.72.cf.pcfazure.com
+  services:
+  - service-registry
+  - mysql
+  - rabbit
+
+

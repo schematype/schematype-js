@@ -1,0 +1,12 @@
+---
+declared-services:
+  cloudant-node-file-upload:
+    label: cloudantNoSQLDB
+    plan: Shared
+applications:
+- name: node-file-upload-cloudant
+  command: node server.js
+  path: .
+  memory: 1G
+  services:
+  - cloudant-node-file-upload

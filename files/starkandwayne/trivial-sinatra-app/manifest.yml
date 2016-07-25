@@ -1,0 +1,3 @@
+applications:
+- name: trivial-sinatra-app
+  memory: 256M

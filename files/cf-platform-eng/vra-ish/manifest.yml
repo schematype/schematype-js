@@ -1,0 +1,6 @@
+---
+applications:
+- name: vra-ish
+  memory: 512M
+  instances: 1
+  path: target/vra-ish-1.0.0.jar

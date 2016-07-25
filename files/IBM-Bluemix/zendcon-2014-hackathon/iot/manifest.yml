@@ -1,0 +1,7 @@
+---
+applications:
+- name:	iot
+  memory: 256M
+  instances: 1
+  host: iot-${random-word}
+  buildpack: https://github.com/zendtech/zend-server-php-buildpack-bluemix.git

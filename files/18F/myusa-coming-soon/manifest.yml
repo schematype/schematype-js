@@ -1,0 +1,8 @@
+---
+applications:
+- name: myusa-coming-soon
+  memory: 64M
+  buildpack: https://github.com/cloudfoundry-incubator/staticfile-buildpack.git
+  domain: my.usa.gov
+  env:
+    FORCE_HTTPS: true

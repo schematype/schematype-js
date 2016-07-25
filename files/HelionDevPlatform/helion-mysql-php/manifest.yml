@@ -1,0 +1,7 @@
+---
+applications:
+- name: helion-mysql-php
+  buildpack: https://github.com/cloudfoundry/php-buildpack#v3.2.2
+  services:
+    ${name}-db:
+      type: mysql

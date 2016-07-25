@@ -1,0 +1,9 @@
+applications:
+- name: header-echo
+  memory: 32M
+  stackato:
+    env:
+      GOVERSION:
+        default: 1.4
+    ignores:
+    - .git

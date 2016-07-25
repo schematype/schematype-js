@@ -1,0 +1,6 @@
+applications:
+- name: calipso
+  mem: 128M
+  services:
+    ${name}-db:
+      type: mongodb

@@ -1,0 +1,6 @@
+---
+applications:
+- name: hello-grails
+  memory: 768M
+  path: target/helloworld-grails-0.1.war
+    

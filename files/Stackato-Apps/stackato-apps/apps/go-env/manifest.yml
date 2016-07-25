@@ -1,0 +1,10 @@
+applications:
+- name: go-env
+  mem: 128M
+  stackato:
+    env:
+      GOVERSION:
+        default: 1.2
+    ignores:
+    - .git
+    - bin

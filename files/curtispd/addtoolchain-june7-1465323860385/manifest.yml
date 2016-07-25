@@ -1,0 +1,8 @@
+applications:
+- path: .
+  memory: 256M
+  instances: 1
+  domain: mybluemix.net
+  name: addtoolchain-june7
+  host: addtoolchain-june7
+  disk_quota: 1024M

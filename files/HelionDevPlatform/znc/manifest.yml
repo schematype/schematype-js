@@ -1,0 +1,21 @@
+applications:
+- name: znc
+  buildpack: https://github.com/ryandotsmith/null-buildpack.git
+  memory: 32M
+  services:
+    ${name}-data:
+      type: filesystem
+    ${name}-port:
+      type: harbor
+  stackato:
+    hooks:
+      pre-staging:
+      - git submodule update --init
+      - cd src && ./autogen.sh
+      - ./configure --prefix=/app
+      - make
+      - make install
+      pre-running:
+      - ruby show_information.rb
+    ignores:
+    - src/.git

@@ -1,0 +1,17 @@
+--- 
+applications: 
+  target/appassembler/: 
+    framework: 
+      name: standalone
+      info: 
+        mem: 64M
+        description: Standalone Application
+        exec: 
+    runtime: java
+    command: bin/demo
+    url: 
+    mem: 512M
+    instances: 1
+    services: 
+      twitter-rabbit: 
+        type: rabbitmq

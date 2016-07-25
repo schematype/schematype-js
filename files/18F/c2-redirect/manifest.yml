@@ -1,0 +1,6 @@
+---
+memory: 64MB
+applications:
+- name: c2-redirect
+  host: c2-redirect
+  domain: 18f.gov

@@ -1,0 +1,11 @@
+declared-services:
+  natural-language-classifier-standard:
+    label: natural_language_classifier
+    plan: standard
+applications:
+- services:
+  - natural-language-classifier-standard
+  name: natural-language-classifier-demo
+  command: npm start
+  path: .
+  memory: 512M

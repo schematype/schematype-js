@@ -1,0 +1,21 @@
+---
+applications:
+- name: rds-broker
+  memory: 256M
+  env:
+    AUTH_USER: user
+    AUTH_PASS: pass
+    DB_URL: 10.244.0.30
+    DB_NAME: rdsbroker
+    DB_USER: rds
+    DB_PASS: rds
+    DB_PORT: 5524
+    DB_TYPE: postgres
+    DB_SSLMODE: verify-ca
+    ENC_KEY: "12345678901234567890123456789012"
+    AWS_REGION: eu-west-1
+    AWS_ACCESS_KEY_ID: AKID1234567890
+    AWS_SECRET_ACCESS_KEY: MY-SECRET-KEY
+    INSTANCE_TAGS: ["rdsbroker", "cf-service"]
+    AWS_SEC_GROUP: sg-xxx
+    AWS_DB_SUBNET_GROUP: dbsubnetgroup

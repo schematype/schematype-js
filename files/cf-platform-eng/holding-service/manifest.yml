@@ -1,0 +1,7 @@
+---
+applications:
+- name: db-holding-service
+  memory: 512M
+  instances: 1
+  path: target/holding-service-0.1.0.jar
+  services: [ hssql ]

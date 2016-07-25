@@ -1,0 +1,11 @@
+---
+declared-services:
+  tradeoff-analytics-service:
+    label: tradeoff_analytics
+    plan: standard
+applications:
+- services:
+  - tradeoff-analytics-service
+  name: nests
+  path: webApp.war
+  memory: 512M

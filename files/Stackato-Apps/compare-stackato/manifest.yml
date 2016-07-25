@@ -1,0 +1,4 @@
+applications:
+- name: compare-stackato
+  buildpack: https://github.com/ActiveState/stackato-buildpack-perl.git
+  mem: 64M

@@ -1,0 +1,16 @@
+---
+timeout: 180
+memory: 256M
+disk_quota: 256M
+no-route: true
+services:
+ - analytics-reporter-creds
+applications:
+- name: realtime-reporter
+  path: realtime-reports
+  env:
+   ANALYTICS_CREDS: analytics-reporter-creds
+- name: daily-reporter
+  path: daily-reports
+  env:
+   ANALYTICS_CREDS: analytics-reporter-creds

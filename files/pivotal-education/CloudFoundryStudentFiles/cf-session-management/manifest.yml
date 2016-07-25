@@ -1,0 +1,8 @@
+applications:
+- name: cf-session-management
+  memory: 1024M
+  # Add your name/initials to make the hostname unique
+  host: cf-session-management-${random-word}
+  domain: cfapps.io
+  path: pre-built/cf-session-management-0.0.1-SNAPSHOT.war
+

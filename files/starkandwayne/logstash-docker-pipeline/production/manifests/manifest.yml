@@ -1,0 +1,114 @@
+compilation:
+  cloud_properties:
+    name: random
+  network: logstash_docker1
+  reuse_compilation_vms: true
+  workers: 6
+director_uuid: 9c7ca635-f6e5-43c3-a795-87ad19388cb9
+jobs:
+- instances: 1
+  name: logstash_docker_z1
+  networks:
+  - name: logstash_docker1
+    static_ips: null
+  persistent_disk: 10240
+  resource_pool: small_z1
+  templates:
+  - name: docker
+    release: docker
+  - name: cfcommunity_logstash_image
+    release: logstash-docker
+  - name: containers
+    release: docker
+meta:
+  name: logstash-docker-production
+  stemcell:
+    name: bosh-warden-boshlite-ubuntu-trusty-go_agent
+    version: "2776"
+name: logstash-docker-production
+networks:
+- name: logstash_docker1
+  subnets:
+  - cloud_properties:
+      name: random
+    range: 10.244.25.0/30
+    reserved:
+    - 10.244.25.1
+    static:
+    - 10.244.25.2
+  - cloud_properties:
+      name: random
+    range: 10.244.25.4/30
+    reserved:
+    - 10.244.25.5
+    static:
+    - 10.244.25.6
+  - cloud_properties:
+      name: random
+    range: 10.244.25.8/30
+    reserved:
+    - 10.244.25.9
+    static: []
+  - cloud_properties:
+      name: random
+    range: 10.244.25.12/30
+    reserved:
+    - 10.244.25.13
+    static: []
+  - cloud_properties:
+      name: random
+    range: 10.244.25.16/30
+    reserved:
+    - 10.244.25.17
+    static: []
+  - cloud_properties:
+      name: random
+    range: 10.244.25.20/30
+    reserved:
+    - 10.244.25.21
+    static: []
+  - cloud_properties:
+      name: random
+    range: 10.244.25.24/30
+    reserved:
+    - 10.244.25.25
+    static: []
+  - cloud_properties:
+      name: random
+    range: 10.244.25.28/30
+    reserved:
+    - 10.244.25.29
+    static: []
+  type: manual
+properties:
+  containers:
+  - bind_ports:
+    - "514:514"
+    - "9200:9200"
+    - "9300:9300"
+    bind_volumes:
+    - /data
+    command: ""
+    image: cfcommunity/logstash
+    memory: 1G
+    name: logstash
+releases:
+- name: docker
+  version: "12"
+- name: logstash-docker
+  version: "1.0"
+resource_pools:
+- cloud_properties:
+    name: random
+  name: small_z1
+  network: logstash_docker1
+  stemcell:
+    name: bosh-warden-boshlite-ubuntu-trusty-go_agent
+    version: "2776"
+update:
+  canaries: 1
+  canary_watch_time: 1000-30000
+  max_in_flight: 50
+  serial: false
+  update_watch_time: 1000-30000
+

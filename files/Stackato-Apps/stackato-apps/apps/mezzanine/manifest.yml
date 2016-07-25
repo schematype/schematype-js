@@ -1,0 +1,20 @@
+applications:
+- name: mezzanine
+  mem: 128M
+  services:
+    ${name}-db:
+      type: mysql
+  stackato:
+    env:
+      DJANGO_SETTINGS_MODULE:
+        default: settings
+    hooks:
+      post-staging:
+      - python manage.py syncdb --noinput
+      - python manage.py collectstatic --noinput
+    ignores:
+    - .git
+    - .pyc
+    - .db
+    min_version:
+      client: 1.4.3

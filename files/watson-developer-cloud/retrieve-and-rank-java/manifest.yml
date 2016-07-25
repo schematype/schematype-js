@@ -1,0 +1,11 @@
+---
+declared-services:
+  retrieve-and-rank-service:
+    label: retrieve_and_rank
+    plan: standard
+applications:
+- services:
+  - retrieve-and-rank-service
+  name: retrieve-and-rank-java
+  path: target/webApp.war
+  memory: 512M

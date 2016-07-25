@@ -1,0 +1,7 @@
+---
+applications:
+- name: loggregator-test
+  memory: 128M
+  instances: 1
+  host: loggregator-test
+  path: .

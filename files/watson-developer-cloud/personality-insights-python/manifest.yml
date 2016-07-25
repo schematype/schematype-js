@@ -1,0 +1,13 @@
+---
+declared-services:
+  personality-insights-service:
+    label: personality_insights
+    plan: tiered
+
+applications:
+- name: personality-insights-python
+  command: python server.py
+  path: .
+  memory: 256M
+  services:
+  - personality-insights-service

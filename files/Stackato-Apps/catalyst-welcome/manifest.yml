@@ -1,0 +1,7 @@
+applications:
+- name: catalyst-welcome
+  memory: 128M
+  stackato:
+    env:
+      CATALYST_HOME:
+        default: $HOME

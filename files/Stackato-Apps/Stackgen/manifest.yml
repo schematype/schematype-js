@@ -1,0 +1,13 @@
+applications:
+- name: stackgen
+  mem: 128M
+  services:
+    ${name}-mongo:
+      type: mongodb
+    ${name}-yamls:
+      type: filesystem
+  stackato:
+    hooks:
+      pre-running:
+      - mv public/yamls public/yamls-bkk || true
+      - ln -s $STACKATO_FILESYSTEM public/yamls

@@ -1,0 +1,15 @@
+---
+applications:
+- name: edm-validation-test
+  memory: 2048M
+  instances: 1
+  host: edm-validation-test
+  domain: de.a9sapp.eu
+  path: target/validation-rest-0.0.1-SNAPSHOT.war
+  buildpack: https://github.com/europeana/java-buildpack.git
+  services:
+    - syslog
+    - swift-sitemap
+    - annotation-mongo
+  env:
+    rootPath: tmp

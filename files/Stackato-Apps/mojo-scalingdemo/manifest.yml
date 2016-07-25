@@ -1,0 +1,8 @@
+applications:
+- name: mojo-scalingdemo
+  instances: 3
+  memory: 64M
+  stackato:
+    ignores:
+    - local/
+    - .git/

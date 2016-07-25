@@ -1,0 +1,9 @@
+--- 
+applications: 
+  .: 
+    name: crash
+    instances: 1
+    runtime: ruby19
+    host: crash-${random-word}
+    mem: 128M
+    command: ruby crash.rb -p $PORT

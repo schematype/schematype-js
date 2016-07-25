@@ -1,0 +1,11 @@
+declared-services:
+  document-conversion-service:
+    label: document_conversion
+    plan: standard
+applications:
+- services:
+  - document-conversion-service
+  name: document-conversion-demo
+  command: npm start
+  path: .
+  memory: 512M

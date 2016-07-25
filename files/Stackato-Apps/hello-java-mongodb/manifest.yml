@@ -1,0 +1,7 @@
+---
+applications:
+- name: hello-java-mongodb
+  memory: 512M
+  path: target/hello-java-mongodb-1.0
+  services:
+    ${name}-db: mongodb

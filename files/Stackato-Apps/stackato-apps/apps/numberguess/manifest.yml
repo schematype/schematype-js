@@ -1,0 +1,4 @@
+applications:
+- name: numberguess
+  buildpack: git://github.com/heroku/heroku-buildpack-java.git
+  mem: 512M

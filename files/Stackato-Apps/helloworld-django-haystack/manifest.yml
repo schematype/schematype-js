@@ -1,0 +1,5 @@
+applications:
+- name: helloworld-django-haystack
+  services:
+    ${name}-es:
+      type: elasticsearch

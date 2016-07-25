@@ -1,0 +1,7 @@
+applications:
+- path: .
+  memory: 256M
+  instances: 1
+  name: insurance-store-front
+  disk_quota: 1024M
+  buildpack: sdk-for-nodejs

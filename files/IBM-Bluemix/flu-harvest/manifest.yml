@@ -1,0 +1,12 @@
+  disk_quota: 128M
+  host: fluharvest
+  name: fluharvest
+  command: node app.js
+  path: .
+  domain: mybluemix.net
+  env:
+    CLOUDANTDB: flureports
+    CLOUDANTPASSWORD: NVFH8ReUf9cnz
+    CLOUDANTUSER: opendata
+  instances: 1
+  memory: 128M

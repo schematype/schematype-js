@@ -1,0 +1,12 @@
+applications:
+- name: mobilefirst
+  host: mobilefirst
+  disk_quota: 1024M
+  command: node app.js
+  path: .
+  domain: mybluemix.net
+  instances: 1
+  memory: 128M
+  env:
+   imfServiceUrl: https://imf-authserver.ng.bluemix.net/imf-authserver
+   ENABLE_ANALYTICS_SDK: 'no'

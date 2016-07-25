@@ -1,0 +1,14 @@
+---
+# all applications use these settings and services
+applications:
+- name: forecast-production
+  path: .
+  timeout: 180
+  memory: 512M
+  instances: 2
+  domain: 18f.gov
+  host: gsaforecast
+  services:
+  - forecast-production-db
+  env:
+    DISABLE_COLLECTSTATIC: true

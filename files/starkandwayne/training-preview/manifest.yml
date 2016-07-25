@@ -1,0 +1,8 @@
+applications:
+- name: training
+  memory: 50M
+  disk: 100M
+  path: .
+  buildpack: ruby_buildpack
+  env:
+    schedule: schedules/20140818-att-seattle-openstack.yml

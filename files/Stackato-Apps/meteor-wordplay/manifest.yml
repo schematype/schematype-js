@@ -1,0 +1,11 @@
+applications:
+- name: meteor-wordplay
+  buildpack: https://github.com/hpcloud/cloudfoundry-buildpack-meteorite.git
+  memory: 64M
+  services:
+    ${name}-db:
+      type: mongodb
+  stackato:
+    env:
+      MONGO_URL:
+        default: $MONGODB_URL

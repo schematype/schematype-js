@@ -1,0 +1,15 @@
+---
+applications:
+  .:
+    name: ordercrunch-arena
+    framework:
+      name: node
+      info:
+        mem: 64M
+        description: Node.js Application
+        exec: 
+    infra: aws
+    runtime: node08
+    url: ${name}.${target-base}
+    mem: 64M
+    instances: 1

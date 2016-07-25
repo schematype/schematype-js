@@ -1,0 +1,7 @@
+---
+applications:
+- name: bosh-cli
+  memory: 256M
+  instances: 1
+  host: bosh-cli
+  path: .

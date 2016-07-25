@@ -1,0 +1,7 @@
+---
+applications:
+- name: helion-mysql-node
+  mem: 128M
+  services:
+    ${name}-db:
+      type: mysql

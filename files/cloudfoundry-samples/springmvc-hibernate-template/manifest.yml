@@ -1,0 +1,11 @@
+--- 
+applications: 
+- name: springmvc-hibernate-template
+  memory: 512M
+  instances: 1
+  host: springmvc-hibernate-template-${random-word}
+  domain: cfapps.io
+  path: target/web-1.0.0.war
+  services: 
+    - springmvc-hibernate-db
+    - springmvc-hibernate-redis 

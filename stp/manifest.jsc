@@ -38,7 +38,20 @@
         "additionalProperties": false,
         "patternProperties": {
           "^[A-Za-z0-9_]+$": {
-            "type": "string"
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         }
       },
@@ -142,7 +155,20 @@
           "additionalProperties": false,
           "patternProperties": {
             "^[A-Za-z0-9_]+$": {
-              "type": "string"
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             }
           }
         },
@@ -245,7 +271,20 @@
       "additionalProperties": false,
       "patternProperties": {
         "^[A-Za-z0-9_]+$": {
-          "type": "string"
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
         }
       }
     },

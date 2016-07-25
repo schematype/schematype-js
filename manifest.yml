@@ -12,4 +12,3 @@ applications:
 - name: springtick
   host: tick09875
   path: ./spring-music/build/libs/spring-music.war
-  memory: 2G

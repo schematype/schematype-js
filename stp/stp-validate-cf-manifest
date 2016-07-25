@@ -1,36 +1,74 @@
 #!/usr/bin/env coffee
 
-die = (msg)->
-  console.log msg
-  process.exit 1
-
-args = process.argv[2..]
-args.length > 0 ||
-  die "#{__filename.replace /.*\//, ''} requires an argument list of manifest.yml files"
-schema_file = "#{__dirname}/manifest.jsc"
-
 fs = require 'fs'
 YAML = require 'js-yaml'
+Ajv = require 'ajv'
+
+class Validator
+  main: (args)->
+    args.length > 0 ||
+      die "#{__progname} requires an argument list of manifest.yml files"
+    schema_file = "#{__dirname}/manifest.jsc"
+
+    ajv = new Ajv \
+      allErrors: true
+    schema = JSON.parse read schema_file
+    validator = ajv.compile schema
+
+    for data_file in args
+      out "Validating '#{data_file}':"
+      if fs.existsSync '/data/'
+        data_file = "/data/#{data_file}"
+      try
+        data = YAML.load read data_file
+      catch e
+        say "\n* YAML error:"
+        # say e
+        say ''
+        continue
+      if valid = validator data
+        say " OK!"
+      else
+        say ''
+        for error in validator.errors
+          @analyze_error error
+      say ''
+
+  analyze_error: (error)->
+    path = error.dataPath
+    path = path.replace /\./g, '/'
+    path = path.replace /\[([0-9]+)\]/g, '/$1'
+    path ||= '/'
+    if error.keyword == 'additionalProperties'
+      if error.params.additionalProperty == 'declared-services'
+        return say "* Contains IBM Bluemix extension: 'declared-services'"
+      else
+        return say "* '#{path}' has unknown key '#{error.params.additionalProperty}'"
+    else if error.keyword == 'format'
+      if error.params.format == 'uri'
+        return say "* #{path} should be a URL"
+    else if error.keyword == 'pattern'
+      return say "* '#{path}': #{error.message}"
+    else if error.keyword == 'type'
+      return say "* '#{path}' has wrong type: #{error.message}"
+    else if error.keyword == 'required'
+      return say "* '#{path}' missing required key: #{error.message}"
+
+    say "* Unrecognized error:\n#{YAML.dump error}"
+
+
+
+
+__progname = __filename.replace /.*\//, ''
 
 read = (path)->
   fs.readFileSync(path).toString()
 
-Ajv = require 'ajv'
-ajv = new Ajv \
-  allErrors: true
-schema = JSON.parse read schema_file
-validator = ajv.compile schema
+say = console.log
+out = (line)->
+  process.stdout.write line
+die = (msg)->
+  console.log msg
+  process.exit 1
 
-for data_file in args
-  if fs.existsSync '/data/'
-    data_file = "/data/#{data_file}"
-  try
-    data = YAML.load read data_file
-  catch e
-    console.log "'#{data_file}' contains invalid YAML:"
-    console.log e
-  if valid = validator data
-    console.log "'#{data_file}' is valid!"
-  else
-    console.log "'#{data_file}' is NOT valid:"
-    console.log validator.errors
+(new Validator).main process.argv[2..]

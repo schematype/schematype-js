@@ -3,7 +3,7 @@
 $schema: 'http://json-schema.org/draft-04/schema#'
 
 const:
-- &SIZE ^[1-9][0-9]*(M|G|MB|GB)$
+- &SIZE ^[1-9][0-9]*(M|G|MB|GB|m|g|mb|gb)$
 - &WORD- ^[-\w]+$
 - &HOST ^[-\w]+$
 

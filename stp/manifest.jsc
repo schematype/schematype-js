@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "const": [
-    "^[1-9][0-9]*(M|G|MB|GB)$",
+    "^[1-9][0-9]*(M|G|MB|GB|m|g|mb|gb)$",
     "^[-\\w]+$",
     "^[-\\w]+$"
   ],
@@ -111,7 +111,7 @@
     "size": {
       "type": "string",
       "description": "Memory size",
-      "pattern": "^[1-9][0-9]*(M|G|MB|GB)$"
+      "pattern": "^[1-9][0-9]*(M|G|MB|GB|m|g|mb|gb)$"
     },
     "application": {
       "type": "object",

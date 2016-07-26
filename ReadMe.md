@@ -11,4 +11,4 @@ docker run -iv $PWD:/data ingy/stp-validate-cf-manifest /stp/stp-validate-cf-man
 At this point 352 are reporting as valid. ALl the errors ore in [[log]]. Each
 error could either be an actual data problem, or a problem with the validator.
 
-Some work will be done to fix bugs, and output more useful error messages.
+The validator is pretty fast. Takes 0.4s to validate all 927 files.

@@ -37,3 +37,16 @@ Then:
 ```
 svcm <manifest-yml-file>...
 ```
+
+## Schema
+
+This validator is a prototype that tries to encode the manifest.yml rules from:
+http://docs.pivotal.io/pivotalcf/1-7/devguide/deploy-apps/manifest.html
+
+The SchemaType encoding is here:
+https://github.com/ingydotnet/schematype-js/blob/stp-validate-cf-manifest/manifest.stp
+
+The matching JSON Schema is here:
+https://github.com/ingydotnet/schematype-js/blob/stp-validate-cf-manifest/stp/manifest.jsc
+
+Currently this is all hardcoded, but will become dynamic very soon.

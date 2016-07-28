@@ -656,7 +656,8 @@ Validating 'files/cloudfoundry-community/rds-broker/manifest.yml':
 * Unrecognized error:
 keyword: oneOf
 dataPath: '.applications[0].env[''INSTANCE_TAGS'']'
-schemaPath: '#/properties/env/patternProperties/%5E%5BA-Za-z0-9_%5D%2B%24/oneOf'
+schemaPath: >-
+  #/properties/applications/items/properties/env/patternProperties/%5E%5BA-Za-z0-9_%5D%2B%24/oneOf
 params: {}
 message: should match exactly one schema in oneOf
 

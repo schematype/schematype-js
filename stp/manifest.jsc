@@ -1,10 +1,119 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "const": [
-    "^[1-9][0-9]*(M|G|MB|GB|m|g|mb|gb)$",
-    "^[-\\w]+$",
-    "^[-\\w]+$"
-  ],
+  "name": "cf-manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "applications": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/application"
+      }
+    },
+    "inherit": {
+      "type": "string"
+    },
+    "buildpack": {
+      "type": "string",
+      "format": "uri"
+    },
+    "command": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "disk_quota": {
+      "$ref": "#/definitions/size"
+    },
+    "domain": {
+      "type": "string"
+    },
+    "domains": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "env": {
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^[A-Za-z0-9_]+$": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "health-check-type": {
+      "type": "string",
+      "enum": [
+        "none",
+        "port"
+      ]
+    },
+    "host": {
+      "type": "string",
+      "pattern": "^[-\\w]+$"
+    },
+    "hosts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[-\\w]+$"
+      }
+    },
+    "instances": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "memory": {
+      "$ref": "#/definitions/size"
+    },
+    "no-hostname": {
+      "type": "boolean"
+    },
+    "no-route": {
+      "type": "boolean"
+    },
+    "path": {
+      "type": "string"
+    },
+    "random-route": {
+      "type": "boolean"
+    },
+    "services": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[-\\w]+$"
+      }
+    },
+    "stack": {
+      "type": "string",
+      "pattern": "^[-\\w]+$"
+    },
+    "timeout": {
+      "type": "integer",
+      "minimum": 1
+    }
+  },
   "definitions": {
     "shared": {
       "buildpack": {
@@ -225,120 +334,6 @@
           "minimum": 1
         }
       }
-    }
-  },
-  "name": "cf-manifest",
-  "type": "object",
-  "additionalProperties": false,
-  "properties": {
-    "applications": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/application"
-      }
-    },
-    "inherit": {
-      "type": "string"
-    },
-    "buildpack": {
-      "type": "string",
-      "format": "uri"
-    },
-    "command": {
-      "oneOf": [
-        {
-          "type": "string"
-        },
-        {
-          "type": "null"
-        }
-      ]
-    },
-    "disk_quota": {
-      "$ref": "#/definitions/size"
-    },
-    "domain": {
-      "type": "string"
-    },
-    "domains": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "env": {
-      "type": "object",
-      "additionalProperties": false,
-      "patternProperties": {
-        "^[A-Za-z0-9_]+$": {
-          "oneOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "number"
-            },
-            {
-              "type": "boolean"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        }
-      }
-    },
-    "health-check-type": {
-      "type": "string",
-      "enum": [
-        "none",
-        "port"
-      ]
-    },
-    "host": {
-      "type": "string",
-      "pattern": "^[-\\w]+$"
-    },
-    "hosts": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "pattern": "^[-\\w]+$"
-      }
-    },
-    "instances": {
-      "type": "integer",
-      "minimum": 1
-    },
-    "memory": {
-      "$ref": "#/definitions/size"
-    },
-    "no-hostname": {
-      "type": "boolean"
-    },
-    "no-route": {
-      "type": "boolean"
-    },
-    "path": {
-      "type": "string"
-    },
-    "random-route": {
-      "type": "boolean"
-    },
-    "services": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "pattern": "^[-\\w]+$"
-      }
-    },
-    "stack": {
-      "type": "string",
-      "pattern": "^[-\\w]+$"
-    },
-    "timeout": {
-      "type": "integer",
-      "minimum": 1
     }
   }
 }

@@ -15,4 +15,4 @@ shell: build
 	$(DOCKER_RUN_COMMAND)
 
 stp/manifest.jsc: stp/manifest.jsc.yaml
-	cat $< | jyj > $@
+	jyj $< | jq 'del(.const,.definitions) + {definitions: .definitions}' > $@

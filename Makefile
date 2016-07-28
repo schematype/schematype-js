@@ -14,5 +14,8 @@ push: build
 shell: build
 	$(DOCKER_RUN_COMMAND)
 
-stp/manifest.jsc: stp/manifest.jsc.yaml
-	jyj $< | jq 'del(.const,.definitions) + {definitions: .definitions}' > $@
+stp/manifest.jsc: stp/manifest.jsc.yaml Makefile
+	jyj $< \
+	    | jq 'del(.const,.definitions.shared)' \
+	    | jq 'del(.definitions) + {definitions: .definitions}' \
+	    > $@

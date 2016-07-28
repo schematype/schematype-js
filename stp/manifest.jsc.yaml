@@ -75,26 +75,23 @@ definitions:
     description: Memory size
     pattern: *SIZE
 
-  application:
-    type: object
-    additionalProperties: false
-    required:
-    - name
-    properties:
-      name:
-        type: string
-        pattern: *WORD-
-      <<: *shared
-
 name: cf-manifest
 type: object
 additionalProperties: false
 # required: []
 properties:
+  <<: *shared
   applications:
     type: array
     items:
-      $ref: '#/definitions/application'
+      type: object
+      additionalProperties: false
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          pattern: *WORD-
+        <<: *shared
   inherit:
     type: string
-  <<: *shared

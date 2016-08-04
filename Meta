@@ -1,7 +1,7 @@
 =meta: 0.0.2
 
 name: schematype
-version: 0.0.2
+version: 0.0.3
 abstract: SchemaType Validator
 homepage: http://schematype.org
 tag: [yaml, json, schema, lint, validate]
@@ -23,7 +23,7 @@ devel:
 
 =npm:
   bin:
-    schematype: ./bin/schematype
+    schematype: ./bin/stp
   engines:
     node: '>=0.4.0'
   dependencies:

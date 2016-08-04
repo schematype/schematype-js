@@ -1,0 +1,61 @@
+# SchemaType schema for CloudFoundry manifest.yaml file.
+#
+# See: http://docs.pivotal.io/pivotalcf/1-7/devguide/deploy-apps/manifest.html
+
+-name: /manifest
+-desc: Schema for CloudFoundry's manifest.yml file
+-spec: schematype.org/v0.0.1
+-from:
+  +%: github:schematype/type/%#master
+
+-base: +/shared
+applications?:
+  -skip: true
+  -type: map[+]
+  name:
+    -type: str/word-
+    -need: true
+  -base: +/shared
+inherit?: +file/path/rel
+
++/size:
+  -type: str
+  -mate: /^[1-9][0-9]*(M|G|MB|GB)$/i
++/shared:
+  buildpack:
+    -type: net/uri
+    -skip: true
+  command:
+    -type: code/shell-command
+    -null: true
+    -skip: true
+  disk_quota:
+    -type: /size
+    -skip: true
+  domain:
+    -type: +net/domain-name
+    -skip: true
+  domains:
+    -list: +
+    -type: net/domain-name
+    -uniq: true
+    -skip: true
+  env?:
+    -key:
+      -type: sys/env-var-name
+    -type: print
+  health-check-type:
+    -enum: [none, port]
+    -skip: true
+  host?: +net/host-name
+  hosts?: +net/host-name[+!]
+  instances?: +int/pos
+  memory?: +/size
+  no-hostname?: +bool
+  no-route?: +bool
+  path?: +file/path/dir/rel
+  random-route?: +bool
+  services?: +word-[+!]
+  stack?: +word-
+  timeout?: +int/pos
+

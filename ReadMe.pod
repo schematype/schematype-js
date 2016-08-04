@@ -8,71 +8,180 @@ See http://github.com/ingydotnet/swim-pm#readme
 
 =head1 Name
 
-schematype - Validator, Translator and Formatter for YAML, JSON, and Others
+schematype - SchemaType Compiler, Validator, Translator, Formatter and Generator
 
 =head1 Synopsis
 
-      # Check if a YAML file is well-formed:
-      > schematype validate <schema-file-or-url> file.yaml
+    # Check if a YAML file is well-formed:
+    > stp validate -s file-schema.stp file.yaml
 
 =head1 Description
 
-The C<schematype> tool is a validator, translator and formatter for YAML,
-JSON, CSV and TSV data.
+The C<schematype> package installs a CLI program called C<stp>. The C<stp>
+tool has many functions related to SchemaType. It can do data document (YAML,
+JSON, others) validation. It can import other kinds of schema into SchemaType
+and it can export SchemaType back into those formats. It can compile and
+reformat SchemaType (C<.stp>) files. Most importantly, it can generate all
+kinds of software code from SchemaType files. These include:
+
+=over
+
+=item * Input editors
+
+=item * Client C<struct>/C<typedef> code
+
+=item * Server model code
+
+=item * Database SQL
+
+=item * Data visualizers
+
+=item * Test input
+
+=item * Documentation
+
+=back
 
 =head1 Installation
 
-The C<schematype> command is currently written in NodeJS. To install it, run:
+The C<stp> command is currently written in Node.js. To install it, run:
 
-      > npm install -g schematype
+    > npm install -g schematype
+    > stp -h
+
+You can also run it as a Docker container, if you have Docker installed and
+don't want to install it with Node.js/npm. See below.
 
 =head1 Usage
 
-The C<schematype> command takes a data file as input and:
+The C<stp> command has many functions. It has a subcommand for each function.
+The general usage is:
+
+    stp <command> [<option>...] [<file>...]
+
+Use this to get a help overview:
+
+    stp -h
+
+this to see the full help:
+
+    stp help
+
+and this to get help for a specific command:
+
+    stp help <command>
+
+See below for a full description of each command and option.
+
+=head1 Running with Docker
+
+If you set up this shell alias:
+
+    alias stp='docker run -i -v $PWD:/data schematype/stp'
+
+then you can use the C<stp> alias just like an installed version of C<stp>.
+This assumes you have C<docker> properly installed, of course.
+
+=head1 Commands
 
 =over
 
-=item * With no options, load it and report whether it is well-formed.
+=item * C<validate> -- Validate one or more data documents against a schema.
 
-=item * With C<--schema=...> option, lint/validate it against the schema.
+=item * C<compile> -- Compile a C<.stp> file to a C<.stpx> file.
 
-=item * With C<--to=...> option, write it to stdout in the specified format.
+=item * C<export> -- Export a C<.stp> file to a C<.jsc> (JSON Schema) file.
 
 =back
 
-If the input data is valid, C<schematype> will return C<0> as the exit code;
-else it will return C<1>.
+=head1 Options
 
-=head1 Command Options
+The C<--quiet> and C<--verbose> options are available for all commands. The
+C<--schema> option is used for all commands that need a schema. The C<--input>
+and C<--output> options specify files explicitly when they can't be inferred
+from a file list. The C<--from> and C<--to> options specify the input and
+output formats when they can't be inferred from file extensions or content
+heuristics.
 
-The C<schematype> command has the following options:
+Many commands accept a list of file paths to perform the specified operation
+on. Input files can either be local paths or they can be URLs. You can also
+use the C<--input> option to specify one input explicitly. The C<--input>
+option should not be used along with a file list. Use one or the other.
+
+The C<stp> command has the following options:
 
 =over
-
-=item * C<-s>, C<< --schema=<file> >>
-
-To use C<schematype> as a linter/validator, specify a schema file. Supports
-the C<schemat> and C<json-schema> formats. See Below.
-
-=item * C<-t>, C<< --to=<format> >>
-
-With this option, C<schematype> will format the input data into the specified
-format and write it to stdout. Valid formats are: C<yaml>, C<json>, C<csv> and
-C<tsv>. This option can be used along with the C<--schema> option.
-
-=item * C<-f>, C<< --from=<format> >>
-
-Explicitly specify the input format. Usually C<schematype> can correctly
-guess the input format. Use this option when it can't. Valid formats are:
-C<yaml>, C<json>, C<csv> and C<tsv>. This option can be used along with the
-C<--schema> option.
 
 =item * C<-q>, C<--quiet>
 
-Suppress all validation output. Use this when you only care about the
-translation output, and/or the C<schematype> exit code.
+Tell C<stp> to be less noisy about what it is doing.
+
+=item * C<-v>, C<--verbose>
+
+Tell C<stp> to be more moisy about what it is doing.
+
+=item * C<-s>, C<< --schema=<file> >>
+
+Specify the schema to use for this operation. Schema files end with C<.stp>
+and compiled schema files end with C<.stpx>. If the schema path is specified
+without a file extension, C<stp> will look for a C<.stpx> file, and then for a
+C<.stp> file. If the path is a directory (URLs should end with C</>), C<stp>
+will look for C<index.stpx> or C<index.stp> file.
+
+=item * C<-i>, C<< --input=<file> >>
+
+Specify a single input file path for the operation. Use this in place of the
+file list argument if appropriate. A value of C<-> indicates that the input
+will be read from STDIN. The file extension will be used as the C<--from>
+value, if that is needed.
+
+=item * C<-o>, C<< --output=<file> >>
+
+Specify a single output file path for the operation. A value of C<-> indicates
+that the output will be written to STDOUT. The file extension will br used as
+the C<--to> value, if needed.
+
+=item * C<-f>, C<< --from=<format> >>
+
+SchemaType commands can operate on different types of input data (like YAML
+or JSON) for example. The C<--from> option explicitly specifies the input
+format. Usually C<stp> can correctly guess the input format. Use this option
+when it can't.
+
+=item * C<-t>, C<< --to=<format> >>
+
+Explicitly specify the output format for the command.
+
+=item * C<-l>, C<< --layout=<layout> >>
+
+When C<stp> writes output files, there is often more than one way to do it.
+This option specifies the output layout style to use. Current styles are:
+
+=over
+
+=item * C<compact>
+
+Write C<.stp> files in a more compact form. Write JSON files without
+whitespace between tokens. The JSON default is a pretty style.
+
+=item * C<explicit>
+
+Write C<.stp> files in a more explicit style. The default is a medium between
+compact and explicit.
 
 =back
+
+=back
+
+=head1 Examples
+
+You can try out C<stp> yourself with these commands:
+
+    > git clone https://github.com/schematype/schematype-js
+    > cd schematype-js/test/manifest
+    > stp validate -s manifest.stp manifest.yml
+    > stp compile -i manifest.stp
+    > stp export -i manifest.stp -t jsc
 
 =head1 See Also
 

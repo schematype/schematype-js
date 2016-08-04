@@ -1,0 +1,128 @@
+meta:
+  name: /manifest
+  desc: Schema for CloudFoundry's manifest.yml file
+  spec: schematype.org/v0.0.1
+type:
+  /manifest:
+    hash:
+    - buildpack:
+        type: net/uri
+    - command:
+        type: code/shell-command
+        null: true
+    - disk_quota:
+        type: str
+        like: /^[1-9][0-9]*(M|G|MB|GB)$/i
+    - domain:
+        type: net/domain-name
+    - domains:
+        type: net/domain-name
+        list: true
+        mini: 1
+        uniq: true
+    - env:
+        hash:
+        - - type
+          - sys/env-var-name:
+              type:
+              - str
+              - num
+    - health-check-type:
+        type: str
+        enum:
+        - none
+        - port
+    - host:
+        type: net/host-name
+    - hosts:
+        type: net/host-name
+        list: true
+        mini: 1
+        uniq: true
+    - instances:
+        type: int/pos
+    - memory:
+        type: str
+        like: /^[1-9][0-9]*(M|G|MB|GB)$/i
+    - no-hostname:
+        type: bool
+    - no-route:
+        type: bool
+    - path:
+        type: file/path/dir/rel
+    - random-route:
+        type: bool
+    - services:
+        type: word-
+        list: true
+        mini: 1
+        uniq: true
+    - stack:
+        type: word-
+    - timeout:
+        type: int/pos
+    - applications:
+        hash:
+        - name:
+            need: true
+            type: str/word-
+        - buildpack:
+            type: net/uri
+        - command:
+            type: code/shell-command
+            null: true
+        - disk_quota:
+            type: str
+            like: /^[1-9][0-9]*(M|G|MB|GB)$/i
+        - domain:
+            type: net/domain-name
+        - domains:
+            type: net/domain-name
+            list: true
+            mini: 1
+            uniq: true
+        - env:
+            hash:
+            - - type
+              - sys/env-var-name:
+                  type:
+                  - str
+                  - num
+        - health-check-type:
+            type: str
+            enum:
+            - none
+            - port
+        - host:
+            type: net/host-name
+        - hosts:
+            type: net/host-name
+            list: true
+            mini: 1
+            uniq: true
+        - instances:
+            type: int/pos
+        - memory:
+            type: str
+            like: /^[1-9][0-9]*(M|G|MB|GB)$/i
+        - no-hostname:
+            type: bool
+        - no-route:
+            type: bool
+        - path:
+            type: file/path/dir/rel
+        - random-route:
+            type: bool
+        - services:
+            type: word-
+            list: true
+            mini: 1
+            uniq: true
+        - stack:
+            type: word-
+        - timeout:
+            type: int/pos
+        list: true
+        mini: 1
+    - inherit:
+        type: file/path/rel

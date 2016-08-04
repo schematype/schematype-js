@@ -1,0 +1,25 @@
+stp compile foo.stp bar.stp                     # creates foo.stpx bar.stpx
+stp sign foo.stpx
+stp compile --sign foo.stp
+stp inspect foo.stpx
+
+stp import foo.jsc --compact
+stp import foo.json                             # auto detect json-schema/xsd
+stp import foo.xsd
+
+stp export --to=jsc foo.stp
+
+stp validate -s foo.stp foo.yaml bar.yaml
+stp validate -s foo.stp foo.json
+stp validate -s foo.stp foo.csv
+
+stp generate --to=proto foo.stp
+stp generate --to=editor foo.stp
+stp generate --to=validator foo.stp
+
+stp convert --to=json foo.yaml
+
+# Reformat an stp file
+stp format --compact foo.stp bar.stp
+stp format --medium foo.stp
+stp format --verbose foo.stp

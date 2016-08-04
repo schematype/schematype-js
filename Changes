@@ -1,4 +1,9 @@
 ---
+version: 0.0.2
+date:    Thu Aug  4 14:11:33 PDT 2016
+changes:
+- Validator, compiler and exporter works
+---
 version: 0.0.1
 date:    Sat Jun  4 09:31:45 PDT 2016
 changes:

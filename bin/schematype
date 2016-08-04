@@ -1,5 +1,0 @@
-#!/usr/bin/env coffee
-
-require '../lib/schematype'
-
-(new SchemaType).run process.argv[2..]

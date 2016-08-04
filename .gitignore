@@ -1,5 +1,10 @@
+/package.json
 /.devel/
 /ext/
+/manifest/
+/node_modules/
 /note/
 /npm/
+/stp-validate-cf-manifest/
+/tmp/
 /yval-*

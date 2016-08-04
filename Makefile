@@ -18,16 +18,21 @@ Makefile targets:
 
 endef
 export HELP
+export NODE_PATH=$(shell npm config get prefix)/lib/node_modules
 
 NAME := $(shell grep '^name: ' Meta 2>/dev/null | cut -d' ' -f2)
 VERSION := $(shell grep '^version: ' Meta 2>/dev/null | cut -d' ' -f2)
 DISTDIR := $(NAME)-$(VERSION)
 DIST := $(DISTDIR).tgz
+DOCKER_IMAGE := schematype/stp
 
 ALL_LIB_DIR := $(shell find lib -type d)
 ALL_NPM_DIR := $(ALL_LIB_DIR:%=npm/%)
 ALL_COFFEE := $(shell find lib -name *.coffee)
 ALL_NPM_JS := $(ALL_COFFEE:%.coffee=npm/%.js)
+
+MAN = $(MAN1)/$(NAME).1
+MAN1 = man/man1
 
 .PHONY: npm doc test
 
@@ -36,18 +41,26 @@ default: help
 help:
 	echo "$$HELP"
 
+update: doc
+
+doc: $(MAN) ReadMe.pod
+
+$(MAN1)/%.1: doc/%.swim
+	swim --to=man $< > $@
+
 testXXX:
 	coffee -e '(require "./test/lib/test/harness").run()' $@/*.coffee
 
 test:
-	./test/test.coffee
+	bash test/manifest.t
+	@#prove -lv test/
 
 install: npm
 	(cd npm; npm install -g .)
 	rm -fr npm
 
-doc:
-	swim --to=pod --complete --wrap doc/$(NAME).swim > ReadMe.pod
+ReadMe.pod: doc/$(NAME).swim
+	swim --to=pod --complete --wrap $< > $@
 
 npm:
 	./.pkg/bin/make-npm
@@ -90,3 +103,14 @@ do-upgrade:
 	mkdir -p $(PKGREPO)/.pkg/bin
 	cp Makefile $(PKGREPO)/Makefile
 	cp -r bin/* $(PKGREPO)/.pkg/bin/
+
+docker-build: npm
+	(cd npm; npm install)
+	docker build -t $(DOCKER_IMAGE) .
+
+docker-push:
+	docker push $(DOCKER_IMAGE)
+
+docker-shell:
+	docker run -it $(DOCKER_IMAGE) bash
+

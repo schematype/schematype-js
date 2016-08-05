@@ -104,10 +104,10 @@ The `stp` command has the following options:
 
 * `-i`, `--input=<file>`
 
-  Specify a single input file path for the operation. Use this in place of the
-  file list argument if appropriate. A value of `-` indicates that the input
-  will be read from STDIN. The file extension will be used as the `--from`
-  value, if that is needed.
+  Specify a single input file path (or URL) for the operation. Use this in
+  place of the file list argument if appropriate. A value of `-` indicates that
+  the input will be read from STDIN. The file extension will be used as the
+  `--from` value, if that is needed.
 
 * `-o`, `--output=<file>`
 
@@ -150,6 +150,12 @@ You can try out `stp` yourself with these commands:
   > stp validate -s manifest.stp manifest.yml
   > stp compile -i manifest.stp
   > stp export -i manifest.stp -t jsc
+
+Or you can skip the `git clone` and do it using URLs for the file names:
+
+  > stp validate -s \
+        https://raw.githubusercontent.com/schematype/schematype-js/master/test/manifest/manifest.stp \
+        https://raw.githubusercontent.com/Stackato-Apps/django-cms/stackato-3.6/manifest.yml
 
 = See Also
 

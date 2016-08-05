@@ -1,7 +1,7 @@
 =meta: 0.0.2
 
 name: schematype
-version: 0.0.4
+version: 0.0.5
 abstract: SchemaType Validator
 homepage: http://schematype.org
 tag: [yaml, json, schema, lint, validate]
@@ -31,6 +31,7 @@ devel:
     argparse: '>=0'
     lodash: '>=0'
     js-yaml: '>=0'
+    sync-request: '>=0'
     # yamljs: '>=0'
   devDependencies:
     coffee-script: '>=1.3.3'

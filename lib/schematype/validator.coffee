@@ -23,7 +23,7 @@ class global.SchemaType.Validator extends SchemaType.Base
       allErrors: true
     validator = ajv.compile json
     while @next_io()
-      out "Validating '#{@input.file}':"
+      out "Validating '#{@input.name}':"
       yaml = @input.read()
       try
         data = YAML.load yaml

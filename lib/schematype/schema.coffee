@@ -71,7 +71,7 @@ class global.SchemaType.Schema extends SchemaType.Base
       @meta.from = '%': from.replace /(.*\/)/, '$1%'
 
   error: (msg)->
-    error "In '#{@input.file}' #{msg}"
+    error "In '#{@input.name}' #{msg}"
 
 class Type
   from_stp: (data, types)->

@@ -65,6 +65,10 @@ ReadMe.pod: doc/$(NAME).swim
 npm:
 	./.pkg/bin/make-npm
 
+node_modules: npm
+	(cd $<; npm install .)
+	mv $</$@ $@
+
 dist: clean npm
 	npm pack ./npm/
 	rm -fr npm
@@ -104,6 +108,7 @@ do-upgrade:
 	cp Makefile $(PKGREPO)/Makefile
 	cp -r bin/* $(PKGREPO)/.pkg/bin/
 
+#------------------------------------------------------------------------------
 docker-build: npm
 	(cd npm; npm install)
 	docker build -t $(DOCKER_IMAGE) .

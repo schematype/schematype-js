@@ -22,8 +22,8 @@ class global.SchemaType.Exporter extends SchemaType.Base
       @output.write @to_json_schema document
 
       if not process.env.TEST_EXPORT?
-        if @output.file != '-'
-            say "Exported '#{@input.file}' to '#{@output.file}'"
+        if @output.name != '-'
+          say "Exported '#{@input.name}' to '#{@output.name}'"
 
   from_input: (input)->
     schema = new SchemaType.Schema input: input

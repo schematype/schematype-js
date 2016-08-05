@@ -178,7 +178,7 @@ Specify the schema to use for this operation. Schema files end with \f(CW\*(C`.s
 .IP "\(bu" 4
 \&\f(CW\*(C`\-i\*(C'\fR, \f(CW\*(C`\-\-input=<file>\*(C'\fR
 .Sp
-Specify a single input file path for the operation. Use this in place of the file list argument if appropriate. A value of \f(CW\*(C`\-\*(C'\fR indicates that the input will be read from \s-1STDIN.\s0 The file extension will be used as the \f(CW\*(C`\-\-from\*(C'\fR value, if that is needed.
+Specify a single input file path (or \s-1URL\s0) for the operation. Use this in place of the file list argument if appropriate. A value of \f(CW\*(C`\-\*(C'\fR indicates that the input will be read from \s-1STDIN.\s0 The file extension will be used as the \f(CW\*(C`\-\-from\*(C'\fR value, if that is needed.
 .IP "\(bu" 4
 \&\f(CW\*(C`\-o\*(C'\fR, \f(CW\*(C`\-\-output=<file>\*(C'\fR
 .Sp
@@ -217,6 +217,14 @@ You can try out \f(CW\*(C`stp\*(C'\fR yourself with these commands:
 \&    > stp validate \-s manifest.stp manifest.yml
 \&    > stp compile \-i manifest.stp
 \&    > stp export \-i manifest.stp \-t jsc
+.Ve
+.PP
+Or you can skip the \f(CW\*(C`git clone\*(C'\fR and do it using URLs for the file names:
+.PP
+.Vb 3
+\&    > stp validate \-s \e
+\&          https://raw.githubusercontent.com/schematype/schematype\-js/master/test/manifest/manifest.stp \e
+\&          https://raw.githubusercontent.com/Stackato\-Apps/django\-cms/stackato\-3.6/manifest.yml
 .Ve
 .SH "See Also"
 .IX Header "See Also"

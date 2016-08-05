@@ -1,12 +1,23 @@
 require '../schematype'
 
 class global.SchemaType.Input
+  name: ''
+  file: ''
   type: ''
+  url: ''
 
-  constructor: (file)->
-    @file = file
-    if m = file.match /\.(\w{3,4})$/
+  constructor: (name)->
+    @name = name
+    if name.match /^https?:\/\//
+      @url = name
+    else
+      @file = name
+    if m = name.match /\.(\w{3,4})$/
       @type = m[1]
 
   read: ->
-    read_file @file
+    if @file
+      read_file @file
+    else if @url
+      require('sync-request')('GET', @url).getBody()
+

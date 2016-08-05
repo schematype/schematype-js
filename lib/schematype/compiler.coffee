@@ -12,5 +12,5 @@ class global.SchemaType.Compiler extends SchemaType.Base
       document = new SchemaType.Document schema: schema
       @output.write JSON.stringify document
 
-      if @output.file != '-'
-        say "Compiled '#{@input.file}' to '#{@output.file}'"
+      if @output.name != '-'
+        say "Compiled '#{@input.name}' to '#{@output.name}'"

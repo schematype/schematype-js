@@ -11,7 +11,7 @@ SchemaType Compiler, Validator, Translator, Formatter and Generator
 = Description
 
 The `schematype` package installs a CLI program called `stp`. The `stp` tool
-has many functions related to SchemaType.  It can do data document (YAML, JSON,
+has many functions related to SchemaType. It can do data document (YAML, JSON,
 others) validation. It can import other kinds of schema into SchemaType and it
 can export SchemaType back into those formats. It can compile and reformat
 SchemaType (`.stp`) files. Most importantly, it can generate all kinds of
@@ -32,7 +32,7 @@ The `stp` command is currently written in Node.js. To install it, run:
   > npm install -g schematype
   > stp -h
 
-You can also run it as a Docker container, if you have Docker installed and
+You can also easily run it as with Docker, if you have Docker installed and
 don't want to install it with Node.js/npm. See below.
 
 = Usage
@@ -58,12 +58,12 @@ See below for a full description of each command and option.
 
 = Running with Docker
 
-If you set up this shell alias:
+If you use Docker, you don't need to install `schematype`, `stp` or Node.js at
+all. Just create a shell alias:
 
-  alias stp='docker run -i -v $PWD:/data schematype/stp'
+  alias stp='docker run --rm -it -v $PWD:/data schematype/stp'
 
-then you can use the `stp` alias just like an installed version of `stp`. This
-assumes you have `docker` properly installed, of course.
+then you can use the `stp` alias just like an installed version of `stp`.
 
 = Commands
 

@@ -65,9 +65,11 @@ ReadMe.pod: doc/$(NAME).swim
 npm:
 	./.pkg/bin/make-npm
 
-node_modules: npm
-	(cd $<; npm install .)
-	mv $</$@ $@
+node: node_modules
+node_modules:
+	./.pkg/bin/make-package-json > package.json
+	npm install .
+	rm package.json
 
 dist: clean npm
 	npm pack ./npm/
@@ -94,7 +96,7 @@ publish-dryrun: check-release dist
 	rm $(DIST)
 
 clean purge:
-	rm -fr npm node_modules $(DIST) $(DISTDIR)
+	rm -fr npm node_modules tmp $(DIST) $(DISTDIR)
 
 upgrade:
 	(PKGREPO=$(PWD) make -C ../javascript-pkg do-upgrade)
@@ -110,12 +112,10 @@ do-upgrade:
 
 #------------------------------------------------------------------------------
 docker-build: npm
-	(cd npm; npm install)
 	docker build -t $(DOCKER_IMAGE) .
 
 docker-push:
 	docker push $(DOCKER_IMAGE)
 
 docker-shell:
-	docker run -it $(DOCKER_IMAGE) bash
-
+	docker run -it --entrypoint=/bin/bash $(DOCKER_IMAGE)

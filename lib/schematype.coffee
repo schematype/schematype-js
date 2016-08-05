@@ -1,4 +1,4 @@
 require './schematype/prelude'
 
 class global.SchemaType
-  version: '0.0.5'
+  version: '0.0.6'

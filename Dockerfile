@@ -2,8 +2,11 @@ FROM node
 
 COPY npm /npm
 
-WORKDIR /data
+RUN apt-get update && \
+    apt-get install -y less man-db && \
+    cd /npm && \
+    npm install -g .
 
-ENV PATH /npm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+WORKDIR /data
 
 ENTRYPOINT ["stp"]

@@ -28,6 +28,7 @@ mkdir npm
   fi
   [ -e eg ] && cp -r eg npm/
   cp -r test npm/
+  [ -e man ] && cp -r man npm/
   ./.pkg/bin/make-package-json > npm/package.json
 )
 

@@ -1,4 +1,10 @@
 ---
+version: 0.0.6
+date:    Fri Aug  5 11:35:14 PDT 2016
+changes:
+- Add MIT License file
+- Get man page installed properly in npm packaging
+---
 version: 0.0.5
 date:    Thu Aug  4 18:04:42 PDT 2016
 changes:

@@ -1,7 +1,7 @@
 =meta: 0.0.2
 
 name: schematype
-version: 0.0.5
+version: 0.0.6
 abstract: SchemaType Validator
 homepage: http://schematype.org
 tag: [yaml, json, schema, lint, validate]
@@ -35,5 +35,16 @@ devel:
     # yamljs: '>=0'
   devDependencies:
     coffee-script: '>=1.3.3'
+  files:
+  - Changes
+  - License
+  - ReadMe.md
+  - bin
+  - doc
+  - lib
+  - man
+  - package.json
+  - test
+  man: man/man1/schematype.1
   scripts:
     test: coffee -e '(require "./test/lib/Test/Harness").run()' test

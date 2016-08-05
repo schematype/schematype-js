@@ -49,7 +49,7 @@ The C<stp> command is currently written in Node.js. To install it, run:
     > npm install -g schematype
     > stp -h
 
-You can also run it as a Docker container, if you have Docker installed and
+You can also easily run it as with Docker, if you have Docker installed and
 don't want to install it with Node.js/npm. See below.
 
 =head1 Usage
@@ -75,12 +75,12 @@ See below for a full description of each command and option.
 
 =head1 Running with Docker
 
-If you set up this shell alias:
+If you use Docker, you don't need to install C<schematype>, C<stp> or Node.js
+at all. Just create a shell alias:
 
-    alias stp='docker run -i -v $PWD:/data schematype/stp'
+    alias stp='docker run --rm -it -v $PWD:/data schematype/stp'
 
 then you can use the C<stp> alias just like an installed version of C<stp>.
-This assumes you have C<docker> properly installed, of course.
 
 =head1 Commands
 

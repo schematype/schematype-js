@@ -9,11 +9,9 @@ class global.SchemaType.Command extends SchemaType.Base
     command = args.command
 
     if command == 'help'
-      process.env.MANPATH = './man'
       if args['<command>'].length == 0
         exec 'man', ['schematype']
       else
-        # TODO Add to MANPATH here.
         exec './bin/stp', [args['<command>'][0], '-h']
     else
       (new (@require_command_module command)(args)).run()

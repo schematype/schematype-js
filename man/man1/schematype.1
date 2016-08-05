@@ -87,7 +87,7 @@ schematype \- SchemaType Compiler, Validator, Translator, Formatter and Generato
 .Ve
 .SH "Description"
 .IX Header "Description"
-The \f(CW\*(C`schematype\*(C'\fR package installs a \s-1CLI\s0 program called \f(CW\*(C`stp\*(C'\fR. The \f(CW\*(C`stp\*(C'\fR tool has many functions related to SchemaType.  It can do data document (\s-1YAML, JSON,\s0 others) validation. It can import other kinds of schema into SchemaType and it can export SchemaType back into those formats. It can compile and reformat SchemaType (\f(CW\*(C`.stp\*(C'\fR) files. Most importantly, it can generate all kinds of software code from SchemaType files. These include:
+The \f(CW\*(C`schematype\*(C'\fR package installs a \s-1CLI\s0 program called \f(CW\*(C`stp\*(C'\fR. The \f(CW\*(C`stp\*(C'\fR tool has many functions related to SchemaType. It can do data document (\s-1YAML, JSON,\s0 others) validation. It can import other kinds of schema into SchemaType and it can export SchemaType back into those formats. It can compile and reformat SchemaType (\f(CW\*(C`.stp\*(C'\fR) files. Most importantly, it can generate all kinds of software code from SchemaType files. These include:
 .IP "\(bu" 4
 Input editors
 .IP "\(bu" 4
@@ -111,7 +111,7 @@ The \f(CW\*(C`stp\*(C'\fR command is currently written in Node.js. To install it
 \&    > stp \-h
 .Ve
 .PP
-You can also run it as a Docker container, if you have Docker installed and don't want to install it with Node.js/npm. See below.
+You can also easily run it as with Docker, if you have Docker installed and don't want to install it with Node.js/npm. See below.
 .SH "Usage"
 .IX Header "Usage"
 The \f(CW\*(C`stp\*(C'\fR command has many functions. It has a subcommand for each function. The general usage is:
@@ -141,13 +141,13 @@ and this to get help for a specific command:
 See below for a full description of each command and option.
 .SH "Running with Docker"
 .IX Header "Running with Docker"
-If you set up this shell alias:
+If you use Docker, you don't need to install \f(CW\*(C`schematype\*(C'\fR, \f(CW\*(C`stp\*(C'\fR or Node.js at all. Just create a shell alias:
 .PP
 .Vb 1
-\&    alias stp=\*(Aqdocker run \-i \-v $PWD:/data schematype/stp\*(Aq
+\&    alias stp=\*(Aqdocker run \-\-rm \-it \-v $PWD:/data schematype/stp\*(Aq
 .Ve
 .PP
-then you can use the \f(CW\*(C`stp\*(C'\fR alias just like an installed version of \f(CW\*(C`stp\*(C'\fR. This assumes you have \f(CW\*(C`docker\*(C'\fR properly installed, of course.
+then you can use the \f(CW\*(C`stp\*(C'\fR alias just like an installed version of \f(CW\*(C`stp\*(C'\fR.
 .SH "Commands"
 .IX Header "Commands"
 .IP "\(bu" 4

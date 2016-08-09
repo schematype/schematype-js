@@ -15,15 +15,23 @@ class global.SchemaType.Base
   commands:
     compile:
       clas: 'Compiler'
-      desc: 'Compile .stp to .stpx'
+      desc: 'Compile a .stp file to a .stpx file'
       args: ['input', 'output', 'inputs']
+    convert:
+      clas: 'Converter'
+      desc: 'XXX Convert a data file from one format to another'
+      args: ['to', 'from', 'input', 'output', 'inputs']
+    create:
+      clas: 'Creator'
+      desc: 'XXX Create a .stp file from valid data files'
+      args: ['schema', 'inputs']
     export:
       clas: 'Exporter'
       desc: 'Export .stp to other formats'
       args: ['to', 'input', 'output', 'inputs']
     format:
       clas: 'Formatter'
-      desc: 'XXX Reformat a .stp file'
+      desc: 'XXX Reformat a .stp file to a desired style'
       args: ['input', 'output', 'layout', 'inputs']
     generate:
       clas: 'Generator'
@@ -31,16 +39,12 @@ class global.SchemaType.Base
       args: []
     import:
       clas: 'Importer'
-      desc: 'XXX Import .stp from other format'
+      desc: 'XXX Import .stp from other formats'
       args: ['schema', 'inputs']
     validate:
       clas: 'Validator'
       desc: 'Validate one or more data files against a schema'
       args: ['schema', 'inputs']
-    convert:
-      clas: 'Converter'
-      desc: 'XXX Convert a data file from one format to another'
-      args: ['to', 'from', 'input', 'output', 'inputs']
 
   require_command_module: (command)->
     clas = @commands[command].clas or

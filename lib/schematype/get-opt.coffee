@@ -20,12 +20,13 @@ class global.SchemaType.GetOpt extends SchemaType.Base
       dest: 'command'
 
     @add_command 'compile'
+    @add_command 'convert'
+    @add_command 'create'
     @add_command 'import'
     @add_command 'export'
     @add_command 'format'
     @add_command 'generate'
     @add_command 'validate'
-    @add_command 'convert'
     @add_help()
     # @add_version()
 

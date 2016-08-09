@@ -67,9 +67,19 @@ then you can use the `stp` alias just like an installed version of `stp`.
 
 = Commands
 
-* `validate` -- Validate one or more data documents against a schema.
+These commands are currently supported:
+
 * `compile` -- Compile a `.stp` file to a `.stpx` file.
 * `export` -- Export a `.stp` file to a `.jsc` (JSON Schema) file.
+* `validate` -- Validate one or more data documents against a schema.
+
+These commands will be implemented soon:
+
+* `convert` -- Convert a data file from one format to another
+* `create` -- Create a .stp file from valid data files
+* `format` -- Reformat a .stp file to a desired style
+* `generate` -- Generate code from a schema file
+* `import` -- Import .stp from other formats
 
 = Options
 

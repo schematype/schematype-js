@@ -84,13 +84,31 @@ then you can use the C<stp> alias just like an installed version of C<stp>.
 
 =head1 Commands
 
-=over
+These commands are currently supported:
 
-=item * C<validate> -- Validate one or more data documents against a schema.
+=over
 
 =item * C<compile> -- Compile a C<.stp> file to a C<.stpx> file.
 
 =item * C<export> -- Export a C<.stp> file to a C<.jsc> (JSON Schema) file.
+
+=item * C<validate> -- Validate one or more data documents against a schema.
+
+=back
+
+These commands will be implemented soon:
+
+=over
+
+=item * C<convert> -- Convert a data file from one format to another
+
+=item * C<create> -- Create a .stp file from valid data files
+
+=item * C<format> -- Reformat a .stp file to a desired style
+
+=item * C<generate> -- Generate code from a schema file
+
+=item * C<import> -- Import .stp from other formats
 
 =back
 

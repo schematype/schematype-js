@@ -150,12 +150,25 @@ If you use Docker, you don't need to install \f(CW\*(C`schematype\*(C'\fR, \f(CW
 then you can use the \f(CW\*(C`stp\*(C'\fR alias just like an installed version of \f(CW\*(C`stp\*(C'\fR.
 .SH "Commands"
 .IX Header "Commands"
-.IP "\(bu" 4
-\&\f(CW\*(C`validate\*(C'\fR \*(-- Validate one or more data documents against a schema.
+These commands are currently supported:
 .IP "\(bu" 4
 \&\f(CW\*(C`compile\*(C'\fR \*(-- Compile a \f(CW\*(C`.stp\*(C'\fR file to a \f(CW\*(C`.stpx\*(C'\fR file.
 .IP "\(bu" 4
 \&\f(CW\*(C`export\*(C'\fR \*(-- Export a \f(CW\*(C`.stp\*(C'\fR file to a \f(CW\*(C`.jsc\*(C'\fR (\s-1JSON\s0 Schema) file.
+.IP "\(bu" 4
+\&\f(CW\*(C`validate\*(C'\fR \*(-- Validate one or more data documents against a schema.
+.PP
+These commands will be implemented soon:
+.IP "\(bu" 4
+\&\f(CW\*(C`convert\*(C'\fR \*(-- Convert a data file from one format to another
+.IP "\(bu" 4
+\&\f(CW\*(C`create\*(C'\fR \*(-- Create a .stp file from valid data files
+.IP "\(bu" 4
+\&\f(CW\*(C`format\*(C'\fR \*(-- Reformat a .stp file to a desired style
+.IP "\(bu" 4
+\&\f(CW\*(C`generate\*(C'\fR \*(-- Generate code from a schema file
+.IP "\(bu" 4
+\&\f(CW\*(C`import\*(C'\fR \*(-- Import .stp from other formats
 .SH "Options"
 .IX Header "Options"
 The \f(CW\*(C`\-\-quiet\*(C'\fR and \f(CW\*(C`\-\-verbose\*(C'\fR options are available for all commands. The \f(CW\*(C`\-\-schema\*(C'\fR option is used for all commands that need a schema. The \f(CW\*(C`\-\-input\*(C'\fR and \f(CW\*(C`\-\-output\*(C'\fR options specify files explicitly when they can't be inferred from a file list. The \f(CW\*(C`\-\-from\*(C'\fR and \f(CW\*(C`\-\-to\*(C'\fR options specify the input and output formats when they can't be inferred from file extensions or content heuristics.

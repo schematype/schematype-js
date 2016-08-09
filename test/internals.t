@@ -1,42 +1,42 @@
 #!/bin/bash
 
-set -e
+source test/setup
+use Test::More
 
-[[ -f bin/stp ]] || { echo 'Wrong cwd'; exit 1; }
-TMP=$PWD/tmp
-rm -fr $TMP
-mkdir $TMP
-export PATH=$PWD/bin:$PATH
-
-# set -x
+initialize
 
 jyj test/manifest/manifest.stps | jyj > $TMP/manifest.stps
 TEST_SCHEMA=1 stp export -i test/manifest/manifest.stp -o $TMP/manifest.schema
 output=$(diff -u $TMP/manifest.stps $TMP/manifest.schema || true)
-if [[ -n $output ]]; then
-  echo "Failed to load SchemaType.Schema object:"
-  echo "$output"
-  exit 1
+if [[ -z $output ]]; then
+  pass 'Load SchemaType.Schema object'
+else
+  fail 'Load SchemaType.Schema object'
+  diag "$output"
+  BAIL_OUT
 fi
 
 jyj test/manifest/manifest.stpx | jyj > $TMP/manifest.stpx
 TEST_DOC=1 stp export -i test/manifest/manifest.stp -o $TMP/manifest.doc
 output=$(diff -u $TMP/manifest.stpx $TMP/manifest.doc || true)
-if [[ -n $output ]]; then
-  echo "Failed to load SchemaType.Document object:"
-  echo "$output"
-  exit 1
+if [[ -z $output ]]; then
+  pass "Load SchemaType.Document object"
+else
+  fail "Load SchemaType.Document object"
+  diag "$output"
+  BAIL_OUT
 fi
 
 TEST_EXPORT=1 stp export -i test/manifest/manifest.stp -o $TMP/manifest.jsc
 output=$(diff -u test/manifest/manifest.jsc $TMP/manifest.jsc || true)
-if [[ -n $output ]]; then
-  echo "Failed to export SchemaType.Document object:"
-  echo "$output"
-  exit 1
+if [[ -z $output ]]; then
+  pass "Export SchemaType.Document object"
+else
+  fail "Export SchemaType.Document object"
+  diag "$output"
+  BAIL_OUT
 fi
 
+done_testing
 
-echo PASS
-
-rm -fr $TMP
+finalize

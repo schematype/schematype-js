@@ -51,9 +51,11 @@ $(MAN1)/%.1: doc/%.swim
 testXXX:
 	coffee -e '(require "./test/lib/test/harness").run()' $@/*.coffee
 
-test:
-	bash test/manifest.t
-	@#prove -lv test/
+test: ext/test-more-bash node_modules
+	@prove -lv test/
+
+ext/test-more-bash:
+	git clone git@github.com:ingydotnet/test-more-bash $@
 
 install: npm
 	(cd npm; npm install -g .)
@@ -96,7 +98,7 @@ publish-dryrun: check-release dist
 	rm $(DIST)
 
 clean purge:
-	rm -fr npm node_modules tmp $(DIST) $(DISTDIR)
+	rm -fr ext npm node_modules tmp $(DIST) $(DISTDIR)
 
 upgrade:
 	(PKGREPO=$(PWD) make -C ../javascript-pkg do-upgrade)

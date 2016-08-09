@@ -1,0 +1,24 @@
+#!/bin/bash
+
+set -e
+
+BASHLIB="`find $PWD -type d | grep -E '/(bin|lib)$' | xargs -n1 printf "%s:"`"
+PATH="$BASHLIB:$PATH"
+export PATH=$PWD/bin:$PATH
+
+source bash+ :std
+
+if [[ ! -f bin/stp ]]; then
+  diag 'Wrong cwd'
+  BAIL_OUT
+fi
+
+initialize() {
+  TMP=$PWD/tmp
+  rm -fr $TMP
+  mkdir $TMP
+}
+
+finalize() {
+  rm -fr $TMP
+}

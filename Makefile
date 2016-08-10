@@ -87,6 +87,7 @@ disttest: distdir
 
 publish: doc check-release dist
 	npm publish $(DIST)
+	git push
 	git tag $(VERSION)
 	git push --tag
 	rm $(DIST)

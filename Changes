@@ -1,4 +1,9 @@
 ---
+version: 0.0.7
+date:    Wed Aug 10 10:01:27 PDT 2016
+changes:
+- Add -deny keyword support
+---
 version: 0.0.6
 date:    Fri Aug  5 11:35:14 PDT 2016
 changes:

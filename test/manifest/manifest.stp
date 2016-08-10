@@ -7,22 +7,22 @@
 -spec: schematype.org/v0.0.1
 -from: github:schematype/type/#master
 
--base: +/shared
-applications?:
-  name: +str/word-
-  -base: +/shared
-  -list: 1
 inherit?: +file/path/rel
+-base: +/core
+applications?:
+  name: +str/word
+  -base: +/core
+  -list: 1
 
 +/size: /^[1-9][0-9]*(M|G|MB|GB)$/i
-+/shared:
++/core:
   buildpack?: +net/uri
   command?: +code/shell-command?
   disk_quota?: +/size
   domain?: +net/domain-name
   domains?: +net/domain-name[+!]
   env?:
-    :+sys/env-var-name: +str|num
+    (+sys/env-var-name): +str|num
   health-check-type?: . [none, port]
   host?: +net/host-name
   hosts?: +net/host-name[+!]
@@ -32,6 +32,9 @@ inherit?: +file/path/rel
   no-route?: +bool
   path?: +file/path/dir/rel
   random-route?: +bool
-  services?: +word-[+!]
-  stack?: +word-
+  routes[+]?:
+    route: +net/domain-name
+    -deny: [domain, domains, host, hosts, no-route]
+  services?: +word[+!]
+  stack?: +word
   timeout?: +int/pos

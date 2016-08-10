@@ -12,11 +12,16 @@ class global.SchemaType.Validator extends SchemaType.Base
     if input.type == 'stp'
       schema = new SchemaType.Schema input: input
       document = new SchemaType.Document schema: schema
-    else if input.type = 'stpx'
+      json = JSON.parse (new SchemaType.Exporter).to_json_schema document
+    else if input.type == 'stpx'
       document = new SchemaType.Document input: input
+      json = JSON.parse (new SchemaType.Exporter).to_json_schema document
+    else if input.type == 'jsc'
+      json = JSON.parse input.read()
+    else if input.name.match /\.jsc\.yaml$/
+      json = load_yaml input.read()
     else
       error "Invalid file extension for schema file"
-    json = JSON.parse (new SchemaType.Exporter).to_json_schema document
     YAML = require 'js-yaml'
     Ajv = require 'ajv'
     ajv = new Ajv \

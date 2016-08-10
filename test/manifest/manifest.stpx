@@ -5,6 +5,8 @@ meta:
 type:
   /manifest:
     hash:
+    - inherit:
+        type: file/path/rel
     - buildpack:
         type: net/uri
     - command:
@@ -52,20 +54,33 @@ type:
         type: file/path/dir/rel
     - random-route:
         type: bool
+    - routes:
+        list: true
+        hash:
+          - route:
+              need: true
+              type: net/domain-name
+        deny:
+          - domain
+          - domains
+          - host
+          - hosts
+          - no-route
     - services:
-        type: word-
+        type: word
         list: true
         mini: 1
         uniq: true
     - stack:
-        type: word-
+        type: word
     - timeout:
         type: int/pos
     - applications:
+        list: true
         hash:
         - name:
             need: true
-            type: str/word-
+            type: str/word
         - buildpack:
             type: net/uri
         - command:
@@ -113,16 +128,25 @@ type:
             type: file/path/dir/rel
         - random-route:
             type: bool
+        - routes:
+            list: true
+            hash:
+              - route:
+                  need: true
+                  type: net/domain-name
+            deny:
+              - domain
+              - domains
+              - host
+              - hosts
+              - no-route
         - services:
-            type: word-
+            type: word
             list: true
             mini: 1
             uniq: true
         - stack:
-            type: word-
+            type: word
         - timeout:
             type: int/pos
-        list: true
         mini: 1
-    - inherit:
-        type: file/path/rel

@@ -1,100 +1,196 @@
-# This is a hand port of manifest.stp to JSON Schema in YAML:
-
 $schema: 'http://json-schema.org/draft-04/schema#'
-
-const:
-- &SIZE ^[1-9][0-9]*(M|G|MB|GB|m|g|mb|gb)$
-- &WORD- ^[-\w]+$
-- &HOST ^[-\w]+$
-
-definitions:
-  shared: &shared
-    buildpack:
-      type: string
-      format: uri
-    command:
-      oneOf:
-      - type: string
-      - type: 'null'
-    disk_quota:
-      $ref: '#/definitions/size'
-    domain:
-      type: string
-    domains:
-      type: array
-      items:
-        type: string
-    env:
-      type: object
-      additionalProperties: false
-      patternProperties:
-        ^[A-Za-z0-9_]+$:
-          oneOf:
-          - type: string
-          - type: number
-          - type: boolean
-          - type: 'null'
-    health-check-type:
-      type: string
-      enum: [none, port]
-    host:
-      type: string
-      pattern: *HOST
-    hosts:
-      type: array
-      items:
-        type: string
-        pattern: *HOST
-    instances:
-      type: integer
-      minimum: 1
-    memory:
-      $ref: '#/definitions/size'
-    no-hostname:
-      type: boolean
-    no-route:
-      type: boolean
-    path:
-      type: string
-    random-route:
-      type: boolean
-    services:
-      type: array
-      items:
-        type: string
-        pattern: *WORD-
-    stack:
-      type: string
-      pattern: *WORD-
-    timeout:
-      type: integer
-      minimum: 1
-
-  size:
-    type: string
-    description: Memory size
-    pattern: *SIZE
-
-  application:
-    type: object
-    additionalProperties: false
-    required:
-    - name
-    properties:
-      name:
-        type: string
-        pattern: *WORD-
-      <<: *shared
-
-name: cf-manifest
+name: manifest
 type: object
 additionalProperties: false
-# required: []
+allOf:
+- oneOf:
+  - required: [routes]
+  - anyOf:
+    - required: [domain]
+    - required: [domains]
+    - required: [host]
+    - required: [hosts]
+    - required: [no-route]
+  - not:
+      anyOf:
+      - required: [routes]
+      - required: [domain]
+      - required: [domains]
+      - required: [host]
+      - required: [hosts]
+      - required: [no-route]
 properties:
+  inherit:
+    type: string
+  buildpack:
+    type: string
+    format: uri
+  command:
+    oneOf:
+      - type: string
+      - type: 'null'
+  disk_quota:
+    type: string
+    pattern: '^[1-9][0-9]*(M|G|MB|GB)$'
+  domain:
+    type: string
+  domains:
+    type: array
+    items:
+      type: string
+  env:
+    type: object
+    additionalProperties: false
+    patternProperties:
+      '^[A-Za-z0-9_]+$':
+        oneOf:
+          - type: string
+          - type: number
+  health-check-type:
+    type: string
+    enum:
+      - none
+      - port
+  host:
+    type: string
+    pattern: '^[-\w]+$'
+  hosts:
+    type: array
+    items:
+      type: string
+      pattern: '^[-\w]+$'
+  instances:
+    type: integer
+    minimum: 1
+  memory:
+    type: string
+    pattern: '^[1-9][0-9]*(M|G|MB|GB)$'
+  no-hostname:
+    type: boolean
+  no-route:
+    type: boolean
+  path:
+    type: string
+  random-route:
+    type: boolean
+  routes:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      required:
+        - route
+      properties:
+        route:
+          type: string
+  services:
+    type: array
+    items:
+      type: string
+      pattern: '^[-\w]+$'
+  stack:
+    type: string
+    pattern: '^[-\w]+$'
+  timeout:
+    type: integer
+    minimum: 1
   applications:
     type: array
     items:
-      $ref: '#/definitions/application'
-  inherit:
-    type: string
-  <<: *shared
+      type: object
+      additionalProperties: false
+      required:
+        - name
+      allOf:
+      - oneOf:
+        - required: [routes]
+        - anyOf:
+          - required: [domain]
+          - required: [domains]
+          - required: [host]
+          - required: [hosts]
+          - required: [no-route]
+        - not:
+            anyOf:
+            - required: [routes]
+            - required: [domain]
+            - required: [domains]
+            - required: [host]
+            - required: [hosts]
+            - required: [no-route]
+      properties:
+        name:
+          type: string
+          pattern: '^[-\w]+$'
+        buildpack:
+          type: string
+          format: uri
+        command:
+          oneOf:
+            - type: string
+            - type: 'null'
+        disk_quota:
+          type: string
+          pattern: '^[1-9][0-9]*(M|G|MB|GB)$'
+        domain:
+          type: string
+        domains:
+          type: array
+          items:
+            type: string
+        env:
+          type: object
+          additionalProperties: false
+          patternProperties:
+            '^[A-Za-z0-9_]+$':
+              oneOf:
+                - type: string
+                - type: number
+        health-check-type:
+          type: string
+          enum:
+            - none
+            - port
+        host:
+          type: string
+          pattern: '^[-\w]+$'
+        hosts:
+          type: array
+          items:
+            type: string
+            pattern: '^[-\w]+$'
+        instances:
+          type: integer
+          minimum: 1
+        memory:
+          type: string
+          pattern: '^[1-9][0-9]*(M|G|MB|GB)$'
+        no-hostname:
+          type: boolean
+        no-route:
+          type: boolean
+        path:
+          type: string
+        random-route:
+          type: boolean
+        routes:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            required:
+              - route
+            properties:
+              route:
+                type: string
+        services:
+          type: array
+          items:
+            type: string
+            pattern: '^[-\w]+$'
+        stack:
+          type: string
+          pattern: '^[-\w]+$'
+        timeout:
+          type: integer
+          minimum: 1

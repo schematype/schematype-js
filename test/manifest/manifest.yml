@@ -1,6 +1,6 @@
 ---
 # all applications use these settings and services
-domain: shared-domain.com x
+domain: shared-domain.com
 memory: 1G
 instances: 1
 services:
@@ -10,5 +10,6 @@ applications:
   host: tock09876
   path: ./spring-music/build/libs/spring-music.war
 - name: springtick
-  host: tick09875
+  routes:
+  - route: tick09875
   path: ./spring-music/build/libs/spring-music.war

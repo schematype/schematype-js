@@ -130,27 +130,34 @@ class Type
       else if key == '-list'
         target.list = true
         target.mini = val
-      else if key.match /^([-\w]+)(\??)$/
-        hash.push @make_pair key, val
-      else if m = key.match /^:\+(.*)/
-        hash.push ['type', @make_pair m[1] + '?', val]
+      else if key == '-deny'
+        target.deny = val
+      else if m = key.match /^([-\w\/]+)(\[\+\])?(\?)?$/
+        [pair, key] = @make_pair key, val
+        hash.push pair
+      else if m = key.match /^\(\+(.*)\)/
+        [pair, key] = @make_pair m[1] + '?', val
+        hash.push ['type', pair]
       else
         die "Unsupported key '#{key}'"
+      if pair[key]?.list == false
+        delete pair[key].list
 
   make_pair: (key, node)->
-    m = key.match /^([-\w\/]+)(\??)$/
+    m = key.match /^([-\w\/]+)(\[\+\])?(\?)?$/
     # xxx key if @xyz?
     name = m[1]
-    opt = Boolean m[2].length
+    list = m[2]?
+    opt = Boolean m[3]?
     pair = {}
     if _.isString node
       pair[name] = @make_value node, opt
     else if _.isPlainObject node
-      pair[name] = {}
-      @make_map node, pair[name]
+      val = pair[name] = list: list
+      @make_map node, val
     else
       die "Unsupported value '#{node}'"
-    return pair
+    return [pair, name]
 
   is_map: (data)->
     return false unless _.isPlainObject data

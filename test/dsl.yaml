@@ -1,0 +1,9 @@
+---
+- key: +str
+- key:
+  -type: str
+---
+- key?: +str
+- key:
+  -type: str
+  -skip: true

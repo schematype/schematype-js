@@ -7,23 +7,23 @@ meta:
 type:
   /manifest:
     hash:
+    - inherit:
+        type: file/path/rel
     - - base
-      - /shared
+      - /core
     - applications:
+        list: true
         hash:
         - name:
             need: true
-            type: str/word-
+            type: str/word
         - - base
-          - /shared
-        list: true
+          - /core
         mini: 1
-    - inherit:
-        type: file/path/rel
   /size:
     type: str
     like: /^[1-9][0-9]*(M|G|MB|GB)$/i
-  /shared:
+  /core:
     hash:
     - buildpack:
         type: net/uri
@@ -70,12 +70,24 @@ type:
         type: file/path/dir/rel
     - random-route:
         type: bool
+    - routes:
+        list: true
+        hash:
+          - route:
+              need: true
+              type: net/domain-name
+        deny:
+          - domain
+          - domains
+          - host
+          - hosts
+          - no-route
     - services:
-        type: word-
+        type: word
         list: true
         mini: 1
         uniq: true
     - stack:
-        type: word-
+        type: word
     - timeout:
         type: int/pos

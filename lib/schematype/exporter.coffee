@@ -37,6 +37,7 @@ class global.SchemaType.Exporter extends SchemaType.Base
       type: 'object'
       additionalProperties: false
       required: []
+      allOf: []
       properties: {}
       # definitions: {}
 
@@ -74,6 +75,7 @@ class global.SchemaType.Exporter extends SchemaType.Base
             type: 'object'
             additionalProperties: false
             required: []
+            allOf: []
             properties: {}
           @convert val, jval
         if val.list?
@@ -82,9 +84,22 @@ class global.SchemaType.Exporter extends SchemaType.Base
             items: jval
         if val.need?
           jsc.required.push key
+        if val.deny?
+          deny =
+            oneOf: [
+              {required: [key]},
+              {anyOf: _.map val.deny, (k)->
+                required: [k]},
+              {not:
+                anyOf: _.map [key, val.deny...], (k)->
+                  required: [k]},
+            ]
+          jsc.allOf.push deny
         jsc.properties[key] = jval
     if jsc.required.length == 0
       delete jsc.required
+    if jsc.allOf.length == 0
+      delete jsc.allOf
 
   get_jval: (val)->
     jval = {}
@@ -122,11 +137,11 @@ jsc_type_map =
     pattern: '^[-\\w]+$'
   'num':
     type: 'number'
-  'str/word-':
+  'str/word':
     type: 'string'
     pattern: '^[-\\w]+$'
   'sys/env-var-name':
     pattern: '^[A-Za-z0-9_]+$'
-  'word-':
+  'word':
     type: 'string'
     pattern: '^[-\\w]+$'

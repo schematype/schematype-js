@@ -3,7 +3,86 @@
   "name": "manifest",
   "type": "object",
   "additionalProperties": false,
+  "allOf": [
+    {
+      "oneOf": [
+        {
+          "required": [
+            "routes"
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "required": [
+                "domain"
+              ]
+            },
+            {
+              "required": [
+                "domains"
+              ]
+            },
+            {
+              "required": [
+                "host"
+              ]
+            },
+            {
+              "required": [
+                "hosts"
+              ]
+            },
+            {
+              "required": [
+                "no-route"
+              ]
+            }
+          ]
+        },
+        {
+          "not": {
+            "anyOf": [
+              {
+                "required": [
+                  "routes"
+                ]
+              },
+              {
+                "required": [
+                  "domain"
+                ]
+              },
+              {
+                "required": [
+                  "domains"
+                ]
+              },
+              {
+                "required": [
+                  "host"
+                ]
+              },
+              {
+                "required": [
+                  "hosts"
+                ]
+              },
+              {
+                "required": [
+                  "no-route"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
   "properties": {
+    "inherit": {
+      "type": "string"
+    },
     "buildpack": {
       "type": "string",
       "format": "uri"
@@ -85,6 +164,21 @@
     "random-route": {
       "type": "boolean"
     },
+    "routes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "route"
+        ],
+        "properties": {
+          "route": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "services": {
       "type": "array",
       "items": {
@@ -107,6 +201,82 @@
         "additionalProperties": false,
         "required": [
           "name"
+        ],
+        "allOf": [
+          {
+            "oneOf": [
+              {
+                "required": [
+                  "routes"
+                ]
+              },
+              {
+                "anyOf": [
+                  {
+                    "required": [
+                      "domain"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "domains"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "host"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "hosts"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "no-route"
+                    ]
+                  }
+                ]
+              },
+              {
+                "not": {
+                  "anyOf": [
+                    {
+                      "required": [
+                        "routes"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "domain"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "domains"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "host"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "hosts"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "no-route"
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
         ],
         "properties": {
           "name": {
@@ -194,6 +364,21 @@
           "random-route": {
             "type": "boolean"
           },
+          "routes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "route"
+              ],
+              "properties": {
+                "route": {
+                  "type": "string"
+                }
+              }
+            }
+          },
           "services": {
             "type": "array",
             "items": {
@@ -211,9 +396,6 @@
           }
         }
       }
-    },
-    "inherit": {
-      "type": "string"
     }
   }
 }

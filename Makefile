@@ -99,7 +99,7 @@ publish-dryrun: check-release dist
 	rm $(DIST)
 
 clean purge:
-	rm -fr ext npm node_modules tmp $(DIST) $(DISTDIR)
+	rm -fr ext/test-more-bash npm node_modules tmp $(DIST) $(DISTDIR)
 
 upgrade:
 	(PKGREPO=$(PWD) make -C ../javascript-pkg do-upgrade)

@@ -1,9 +1,15 @@
----
-- key: +str
-- key:
-  -type: str
----
-- key?: +str
-- key:
-  -type: str
-  -skip: true
+- dsl:
+    key: +str
+  exp:
+    key:
+      -type: +str
+  mem: ...
+  cmp: ...
+# - dsl:
+#     key?: +str
+#   exp:
+#     key:
+#       -type: +str
+#       -skip: true
+#   mem: ...
+#   cmp: ...

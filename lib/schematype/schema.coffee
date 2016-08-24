@@ -4,11 +4,9 @@ class global.SchemaType.Schema extends SchemaType.Base
   main: ->
     @type[@meta.name]
 
-  constructor: ({@input})->
+  constructor: ({@input}={})->
     if @input?
       @new_from_input @input
-    else
-      error "invalid input to Schema constructor"
 
   new_from_input: (input)->
     if input.type == 'stp'
@@ -17,8 +15,9 @@ class global.SchemaType.Schema extends SchemaType.Base
       error "Can only construct Schema from '.stp' file"
 
   new_from_stp: (stp)->
-    @data = load_yaml stp
+    @new_from_data load_yaml stp
 
+  new_from_data: (@data)->
     @make_meta()
 
     @type = {}

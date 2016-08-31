@@ -30,6 +30,7 @@ class global.SchemaType.GetOpt extends SchemaType.Base
     @add_help()
     # @add_version()
 
+    argv = ['-h'] unless argv.length
     args = @parser.parseArgs(argv)
     args.inputs = args['<input-file>']
     delete args['<input-file>']

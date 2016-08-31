@@ -7,6 +7,7 @@ class global.SchemaType.Schema extends SchemaType.Base
   constructor: ({@input}={})->
     if @input?
       @new_from_input @input
+    delete @input
 
   new_from_input: (input)->
     if input.type == 'stp'
@@ -23,7 +24,7 @@ class global.SchemaType.Schema extends SchemaType.Base
     @type = {}
 
     name = @meta.name
-    if m = name.match /^\/[-\w]+$/
+    if m = name.match /^[-\w]+$/
       @make_type name, @data
     else
       die "Can't handle -name == '#{name}'"
@@ -48,8 +49,6 @@ class global.SchemaType.Schema extends SchemaType.Base
     delete @data['-name']
     name? or
       @error "the '-name' field is required"
-    name.match(/^\//) or
-      @error "the '-name' field must begin with '/'"
 
   set_desc: ->
     @meta.desc = @data['-desc'] || null
@@ -79,7 +78,7 @@ class Type
       if m = key.match /^\+(.*)/
         delete data[key]
         name = m[1]
-        if m = name.match /^\/[-\w]+$/
+        if m = name.match /^[-\w]+$/
           types[name] = new Type
           types[name].from_stp val, types
         else

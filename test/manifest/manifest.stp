@@ -2,23 +2,23 @@
 #
 # See: http://docs.pivotal.io/pivotalcf/1-7/devguide/deploy-apps/manifest.html
 
--name: /manifest
+-name: manifest
 -desc: Schema for CloudFoundry's manifest.yml file
 -spec: schematype.org/v0.0.1
 -from: github:schematype/type/#master
 
 inherit?: +file/path/rel
--base: +/core
+-base: +core
 applications?:
   name: +str/word
-  -base: +/core
+  -base: +core
   -list: 1
 
-+/size: /^[1-9][0-9]*(M|G|MB|GB)$/i
-+/core:
++size: /^[1-9][0-9]*(M|G|MB|GB)$/i
++core:
   buildpack?: +net/uri
   command?: +code/shell-command?
-  disk_quota?: +/size
+  disk_quota?: +size
   domain?: +net/domain-name
   domains?: +net/domain-name[+!]
   env?:
@@ -27,7 +27,7 @@ applications?:
   host?: +net/host-name
   hosts?: +net/host-name[+!]
   instances?: +int/pos
-  memory?: +/size
+  memory?: +size
   no-hostname?: +bool
   no-route?: +bool
   path?: +file/path/dir/rel

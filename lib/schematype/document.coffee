@@ -54,8 +54,9 @@ class global.SchemaType.Document extends SchemaType.Base
         val = elem[key]
         if val.hash?
           @expand_type val
-        else if val.type?.match /^\//
-          elem[key] = @clone @schema.type[val.type]
+        else if val.type?
+          if @schema.type[val.type]
+            elem[key] = @clone @schema.type[val.type]
       i++
 
   clone: (data)->

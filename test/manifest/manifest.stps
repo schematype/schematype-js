@@ -1,16 +1,16 @@
 meta:
-  name: /manifest
+  name: manifest
   desc: Schema for CloudFoundry's manifest.yml file
   spec: schematype.org/v0.0.1
   from:
     '%': github:schematype/type/%#master
 type:
-  /manifest:
+  manifest:
     hash:
     - inherit:
         type: file/path/rel
     - - base
-      - /core
+      - core
     - applications:
         list: true
         hash:
@@ -18,12 +18,12 @@ type:
             need: true
             type: str/word
         - - base
-          - /core
+          - core
         mini: 1
-  /size:
+  size:
     type: str
     like: /^[1-9][0-9]*(M|G|MB|GB)$/i
-  /core:
+  core:
     hash:
     - buildpack:
         type: net/uri
@@ -31,7 +31,7 @@ type:
         type: code/shell-command
         null: true
     - disk_quota:
-        type: /size
+        type: size
     - domain:
         type: net/domain-name
     - domains:
@@ -61,7 +61,7 @@ type:
     - instances:
         type: int/pos
     - memory:
-        type: /size
+        type: size
     - no-hostname:
         type: bool
     - no-route:

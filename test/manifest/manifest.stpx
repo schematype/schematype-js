@@ -1,9 +1,9 @@
 meta:
-  name: /manifest
+  name: manifest
   desc: Schema for CloudFoundry's manifest.yml file
   spec: schematype.org/v0.0.1
 type:
-  /manifest:
+  manifest:
     hash:
     - inherit:
         type: file/path/rel

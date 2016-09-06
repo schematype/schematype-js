@@ -5,7 +5,7 @@ require '../lib/schematype/schema'
 
 make_stp = (data)->
   stp =
-    '-name': "/test"
+    '-name': "test"
     '-desc': "Schema for unit testing"
     '-spec': "schematype.org/v0.0.1"
     '-from': "github:schematype/type/#master"

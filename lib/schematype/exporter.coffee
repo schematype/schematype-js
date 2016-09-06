@@ -124,6 +124,8 @@ jsc_type_map =
     type: 'string'
   'file/path/rel':
     type: 'string'
+  'int':
+    type: 'integer'
   'int/pos':
     type: 'integer'
     minimum: 1

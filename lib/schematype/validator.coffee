@@ -27,6 +27,7 @@ class global.SchemaType.Validator extends SchemaType.Base
     ajv = new Ajv \
       allErrors: true
     validator = ajv.compile json
+    got_errors = false
     while @next_io()
       out "Validating '#{@input.name}':"
       yaml = @input.read()
@@ -40,10 +41,12 @@ class global.SchemaType.Validator extends SchemaType.Base
       if valid = validator data
         say " OK!"
       else
+        got_errors = true
         say ''
         for err in validator.errors
           @analyze_error err
       say ''
+      process.exit Number got_errors
 
   analyze_error: (error)->
     path = error.dataPath

@@ -5,17 +5,17 @@
 -name: manifest
 -desc: Schema for CloudFoundry's manifest.yml file
 -spec: schematype.org/v0.0.1
--from: github:schematype/type/#master
+-from: github:schematype/core/
 
 inherit?: +file/path/rel
--base: +core
+-base: +common
 applications?:
   name: +str/word
-  -base: +core
+  -base: +common
   -list: 1
 
 +size: /^[1-9][0-9]*(M|G|MB|GB)$/i
-+core:
++common:
   buildpack?: +net/uri
   command?: +code/shell-command?
   disk_quota?: +size

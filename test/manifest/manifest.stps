@@ -3,14 +3,14 @@ meta:
   desc: Schema for CloudFoundry's manifest.yml file
   spec: schematype.org/v0.0.1
   from:
-    '%': github:schematype/type/%#master
+    '%': github:schematype/core/%
 type:
   manifest:
     hash:
     - inherit:
         type: file/path/rel
     - - base
-      - core
+      - common
     - applications:
         list: true
         hash:
@@ -18,12 +18,12 @@ type:
             need: true
             type: str/word
         - - base
-          - core
+          - common
         mini: 1
   size:
     type: str
     like: /^[1-9][0-9]*(M|G|MB|GB)$/i
-  core:
+  common:
     hash:
     - buildpack:
         type: net/uri

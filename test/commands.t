@@ -7,6 +7,7 @@ initialize
 
 run-cmd() {
   local command="$1"
+  local command="${1//$'\n'/ }"
   local regex="$2"
   local rc=0
   output="$($command 2>&1)" || rc=$?
@@ -35,18 +36,35 @@ dir='test/data'
 out='test/output'
 rm -fr "$out"
 mkdir -p "$out"
-stp="$out/schema.stp"
 
 #------------------------------------------------------------------------------
 # `stp validate` test cases:
 #------------------------------------------------------------------------------
-run-cmd 'stp validate -s test/manifest/manifest.stp test/manifest/manifest.yml'
+# Run with zero input files:
+run-bad-cmd 'stp validate -s test/manifest/manifest.stp' \
+  'command requires at least one input file'
+
+# Run with no schema file:
+run-bad-cmd 'stp validate test/manifest/manifest.yml' \
+  'Schema file required'
+
+# Run with one input file:
+run-cmd 'stp validate -s test/manifest/manifest.stp test/manifest/manifest.yml' \
+  "Validating 'test/manifest/manifest.yml': OK"
+
+# Run with multiple input files:
+run-cmd 'stp validate -s test/manifest/manifest.stp test/manifest/manifest.yml test/manifest/manifest.yml'
+is $(echo "$output" | wc -l) 3 'Got 3 output lines'
 
 # Need CSV support:
 # run "stp validate -s $dir/stuff.stp $dir/stuff.csv"
+
+
 #------------------------------------------------------------------------------
 # `stp create` test cases:
 #------------------------------------------------------------------------------
+stp="$out/schema.stp"
+
 # Needs at least one input file:
 run-bad-cmd "stp create" \
   "stp error: 'stp create' command requires at least one input file"

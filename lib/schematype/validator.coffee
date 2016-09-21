@@ -8,6 +8,8 @@ class global.SchemaType.Validator extends SchemaType.Base
   run: ->
     if not @args.schema?
       error "Schema file required. Use '-s'"
+    if not @args.inputs.length
+      error "'stp validate' command requires at least one input file"
     input = new SchemaType.Input @args.schema
     if input.type == 'stp'
       schema = new SchemaType.Schema input: input
@@ -46,7 +48,7 @@ class global.SchemaType.Validator extends SchemaType.Base
         for err in validator.errors
           @analyze_error err
       say ''
-      process.exit Number got_errors
+    process.exit Number got_errors
 
   analyze_error: (error)->
     path = error.dataPath

@@ -7,12 +7,12 @@ class global.SchemaType.Output
   url: ''
 
   constructor: (name)->
-    @name = name
-    if name.match /^https?:\/\//
-      @url = name
+    @name = if name? then name else '-'
+    if @name.match /^https?:\/\//
+      @url = @name
     else
-      @file = name
-    if m = name.match /\.(\w{3,4})$/
+      @file = @name
+    if m = @name.match /\.(\w{3,4})$/
       @type = m[1]
 
   write: (string)->

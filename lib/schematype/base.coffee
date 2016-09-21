@@ -24,7 +24,7 @@ class global.SchemaType.Base
     create:
       clas: 'Creator'
       desc: 'XXX Create a .stp file from valid data files'
-      args: ['schema', 'inputs']
+      args: ['schema', 'output', 'inputs']
     export:
       clas: 'Exporter'
       desc: 'Export .stp to other formats'

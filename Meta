@@ -29,7 +29,7 @@ devel:
   dependencies:
     ajv: '>=4.7.0'
     argparse: '>=1.0.7'
-    csv-parse '>=1.1.7'
+    csv-parse: '>=1.1.7'
     lodash: '>=4.15.0'
     js-yaml: '>=3.6.1'
     sync-request: '>=3.0.1'
